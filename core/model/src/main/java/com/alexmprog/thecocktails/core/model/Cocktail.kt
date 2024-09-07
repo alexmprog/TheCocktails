@@ -1,0 +1,19 @@
+package com.alexmprog.thecocktails.core.model
+
+data class Cocktail(
+    val id: Int,
+    val name: String,
+    val image: String?
+)
+
+data class CocktailDetails(
+    val id: Int,
+    val category: String,
+    val glass: String,
+    val description: String,
+    val ingredients: List<String>
+)
+
+enum class CocktailsSearchSource {
+    Category, Ingredient, Glass;
+}
