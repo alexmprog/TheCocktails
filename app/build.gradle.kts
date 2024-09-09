@@ -32,7 +32,7 @@ android {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.ui)
-    implementation(projects.feature.cocktails)
+    implementation(projects.feature.cocktailsList)
     implementation(projects.feature.cocktailDetails)
     implementation(projects.feature.home)
     implementation(libs.androidx.core.ktx)

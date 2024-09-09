@@ -12,8 +12,8 @@ import com.alexmprog.thecocktails.feature.cocktail.details.cocktailDetailsScreen
 import com.alexmprog.thecocktails.feature.cocktail.details.navigateToCocktailDetails
 import com.alexmprog.thecocktails.feature.home.HomeScreenRoute
 import com.alexmprog.thecocktails.feature.home.homeScreenRoute
-import com.alexmprog.thecocktails.festure.cocktails.cocktailsScreenRoute
-import com.alexmprog.thecocktails.festure.cocktails.navigateToCocktails
+import com.alexmprog.thecocktails.festure.cocktails.list.cocktailsScreenRoute
+import com.alexmprog.thecocktails.festure.cocktails.list.navigateToCocktails
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable

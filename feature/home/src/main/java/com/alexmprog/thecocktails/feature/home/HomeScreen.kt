@@ -45,16 +45,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.alexmprog.thecocktails.categories.CategoriesListScreenRoute
-import com.alexmprog.thecocktails.categories.categoriesScreenRoute
+import com.alexmprog.thecocktails.categories.list.CategoriesListScreenRoute
+import com.alexmprog.thecocktails.categories.list.categoriesScreenRoute
 import com.alexmprog.thecocktails.core.model.Category
 import com.alexmprog.thecocktails.core.model.Glass
 import com.alexmprog.thecocktails.core.model.Ingredient
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute
-import com.alexmprog.thecocktails.feature.glasses.GlassesListScreenRoute
-import com.alexmprog.thecocktails.feature.glasses.glassesScreenRoute
-import com.alexmprog.thecocktails.feature.ingredients.IngredientsListScreenRoute
-import com.alexmprog.thecocktails.feature.ingredients.ingredientsScreenRoute
+import com.alexmprog.thecocktails.feature.glasses.list.GlassesListScreenRoute
+import com.alexmprog.thecocktails.feature.glasses.list.glassesScreenRoute
+import com.alexmprog.thecocktails.feature.ingredients.list.IngredientsListScreenRoute
+import com.alexmprog.thecocktails.feature.ingredients.list.ingredientsScreenRoute
 import kotlinx.coroutines.launch
 
 @Composable

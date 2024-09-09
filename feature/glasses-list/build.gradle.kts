@@ -5,16 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.alexmprog.thecocktails.feature.home"
+    namespace = "com.alexmprog.thecocktails.feature.glasses.list"
 }
 
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.domain)
     implementation(projects.core.ui)
-    implementation(projects.feature.categoriesList)
-    implementation(projects.feature.ingredientsList)
-    implementation(projects.feature.glassesList)
     implementation(libs.androidx.lifecycle.runtime.compose.android)
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
