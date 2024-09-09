@@ -2,6 +2,9 @@ package com.alexmprog.thecocktails.categories
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.alexmprog.thecocktails.core.model.Category
@@ -18,6 +21,8 @@ fun NavGraphBuilder.categoriesScreenRoute(onCategoryClick: (Category) -> Unit) {
         exitTransition = { fadeOut() },
         popExitTransition = { fadeOut() }
     ) {
-        CategoriesListRoute(onCategoryClick = onCategoryClick)
+        val viewModel = hiltViewModel<CategoriesListViewModel>()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        CategoriesListScreen(uiState, onCategoryClick = onCategoryClick)
     }
 }

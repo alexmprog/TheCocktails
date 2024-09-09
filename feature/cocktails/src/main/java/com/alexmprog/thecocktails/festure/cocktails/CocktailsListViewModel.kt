@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.festure.cocktails.list
+package com.alexmprog.thecocktails.festure.cocktails
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import androidx.navigation.toRoute
 import com.alexmprog.thecocktails.core.domain.GetCocktailsUseCase
 import com.alexmprog.thecocktails.core.model.Cocktail
 import com.alexmprog.thecocktails.core.ui.state.ViewState
-import com.alexmprog.thecocktails.festure.cocktails.CocktailsListScreenRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

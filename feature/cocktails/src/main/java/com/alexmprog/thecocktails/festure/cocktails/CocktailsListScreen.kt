@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.festure.cocktails.list
+package com.alexmprog.thecocktails.festure.cocktails
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -26,7 +26,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -34,42 +33,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.alexmprog.thecocktails.core.model.Cocktail
 import com.alexmprog.thecocktails.core.ui.state.ViewState
 import com.alexmprog.thecocktails.feature.cocktails.R
 
-@OptIn(ExperimentalSharedTransitionApi::class)
-@Composable
-internal fun CocktailsListRoute(
-    viewModel: CocktailsListViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedVisibilityScope: AnimatedVisibilityScope,
-    onCocktailClick: (Cocktail) -> Unit,
-    navigateUp: () -> Unit
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    CocktailsListScreen(
-        uiState,
-        modifier,
-        sharedTransitionScope,
-        animatedVisibilityScope,
-        onCocktailClick,
-        navigateUp
-    )
-}
-
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun CocktailsListScreen(
     uiState: ViewState<List<Cocktail>>,
-    modifier: Modifier,
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
+    modifier: Modifier = Modifier,
     onCocktailClick: (Cocktail) -> Unit,
     navigateUp: () -> Unit
 ) {

@@ -16,30 +16,17 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexmprog.thecocktails.core.model.Ingredient
 import com.alexmprog.thecocktails.core.ui.state.ViewState
 
 @Composable
-internal fun IngredientsListRoute(
-    viewModel: IngredientsListViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier,
-    onIngredientClick: (Ingredient) -> Unit
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    IngredientsListScreen(uiState, modifier, onIngredientClick)
-}
-
-@Composable
 internal fun IngredientsListScreen(
     uiState: ViewState<List<Ingredient>>,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onIngredientClick: (Ingredient) -> Unit
 ) {
     Surface {

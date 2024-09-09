@@ -16,30 +16,17 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexmprog.thecocktails.core.model.Glass
 import com.alexmprog.thecocktails.core.ui.state.ViewState
 
 @Composable
-internal fun GlassesListRoute(
-    viewModel: GlassesListViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier,
-    onGlassClick: (Glass) -> Unit
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    GlassesListScreen(uiState, modifier, onGlassClick)
-}
-
-@Composable
 internal fun GlassesListScreen(
     uiState: ViewState<List<Glass>>,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onGlassClick: (Glass) -> Unit
 ) {
     Surface {

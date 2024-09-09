@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">TheCocktails</string>
-    <string name="categories">Categories</string>
-    <string name="ingredients">Ingredients</string>
-    <string name="glasses">Glasses</string>
 </resources>

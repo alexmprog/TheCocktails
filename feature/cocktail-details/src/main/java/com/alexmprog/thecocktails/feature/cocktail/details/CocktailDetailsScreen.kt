@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.festure.cocktails.details
+package com.alexmprog.thecocktails.feature.cocktail.details
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -18,42 +18,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.alexmprog.thecocktails.core.model.Cocktail
 import com.alexmprog.thecocktails.core.model.CocktailDetails
 import com.alexmprog.thecocktails.core.ui.state.ViewState
-import com.alexmprog.thecocktails.feature.cocktails.R
 
-@OptIn(ExperimentalSharedTransitionApi::class)
-@Composable
-internal fun CocktailDetailsRoute(
-    viewModel: CocktailDetailsViewModel = hiltViewModel(),
-    sharedTransitionScope: SharedTransitionScope,
-    animatedVisibilityScope: AnimatedVisibilityScope,
-    modifier: Modifier = Modifier,
-    navigateUp: () -> Unit
-) {
-    val cocktailState by viewModel.cocktailState.collectAsStateWithLifecycle()
-    val detailsState by viewModel.detailsState.collectAsStateWithLifecycle()
-    CocktailDetailsScreen(
-        cocktailState,
-        detailsState,
-        sharedTransitionScope,
-        animatedVisibilityScope,
-        modifier,
-        navigateUp
-    )
-}
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +38,7 @@ internal fun CocktailDetailsScreen(
     details: ViewState<CocktailDetails>,
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     navigateUp: () -> Unit
 ) {
     with(sharedTransitionScope) {
@@ -116,7 +92,7 @@ internal fun CocktailDetailsScreen(
                 if (details is ViewState.Success) {
                     Text(
                         stringResource(
-                            R.string.feature_cocktails_category_template,
+                            R.string.feature_cocktail_details_category_template,
                             details.data.category
                         ),
                         modifier = Modifier
@@ -126,7 +102,7 @@ internal fun CocktailDetailsScreen(
                     )
                     Text(
                         stringResource(
-                            R.string.feature_cocktails_glass_template,
+                            R.string.feature_cocktail_details_glass_template,
                             details.data.glass
                         ),
                         modifier = Modifier
@@ -136,7 +112,7 @@ internal fun CocktailDetailsScreen(
                     )
                     Text(
                         stringResource(
-                            R.string.feature_cocktails_ingredients_template,
+                            R.string.feature_cocktail_details_ingredients_template,
                             details.data.ingredients.joinToString(", ")
                         ),
                         modifier = Modifier
@@ -146,7 +122,7 @@ internal fun CocktailDetailsScreen(
                     )
                     Text(
                         stringResource(
-                            R.string.feature_cocktails_instructions_template,
+                            R.string.feature_cocktail_details_instructions_template,
                             details.data.description
                         ),
                         modifier = Modifier
@@ -158,7 +134,8 @@ internal fun CocktailDetailsScreen(
                     LinearProgressIndicator(
                         Modifier
                             .fillMaxWidth()
-                            .height(4.dp))
+                            .height(4.dp)
+                    )
                 }
             }
         }

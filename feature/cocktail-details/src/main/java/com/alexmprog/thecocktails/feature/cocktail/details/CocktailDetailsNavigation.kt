@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.festure.cocktails
+package com.alexmprog.thecocktails.feature.cocktail.details
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -11,37 +11,37 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CocktailsListScreenRoute(val id: String, val source: CocktailsSearchSource) : ScreenRoute
+data class CocktailDetailsScreenRoute(val id: Int, val name: String, val image: String?) :
+    ScreenRoute
 
 @OptIn(ExperimentalSharedTransitionApi::class)
-fun NavGraphBuilder.cocktailsScreenRoute(
+fun NavGraphBuilder.cocktailDetailsScreenRoute(
     sharedTransitionScope: SharedTransitionScope,
-    onCocktailClick: (Cocktail) -> Unit,
     navigateUp: () -> Unit
 ) {
-    composable<CocktailsListScreenRoute>(
+    composable<CocktailDetailsScreenRoute>(
         enterTransition = { fadeIn() },
         popEnterTransition = { fadeIn() },
         exitTransition = { fadeOut() },
         popExitTransition = { fadeOut() }
     ) {
-        val viewModel = hiltViewModel<CocktailsListViewModel>()
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-        CocktailsListScreen(
-            uiState,
+        val viewModel: CocktailDetailsViewModel = hiltViewModel()
+        val cocktailState by viewModel.cocktailState.collectAsStateWithLifecycle()
+        val detailsState by viewModel.detailsState.collectAsStateWithLifecycle()
+        CocktailDetailsScreen(
+            cocktailState,
+            detailsState,
             sharedTransitionScope,
             this@composable,
-            onCocktailClick = onCocktailClick,
             navigateUp = navigateUp
         )
     }
 }
 
-fun NavController.navigateToCocktails(id: String, source: CocktailsSearchSource) {
-    navigate(CocktailsListScreenRoute(id, source))
+fun NavController.navigateToCocktailDetails(cocktail: Cocktail) {
+    navigate(CocktailDetailsScreenRoute(cocktail.id, cocktail.name, cocktail.image))
 }

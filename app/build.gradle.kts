@@ -32,10 +32,9 @@ android {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.ui)
-    implementation(projects.feature.categories)
-    implementation(projects.feature.ingredients)
-    implementation(projects.feature.glasses)
     implementation(projects.feature.cocktails)
+    implementation(projects.feature.cocktailDetails)
+    implementation(projects.feature.home)
     implementation(libs.androidx.core.ktx)
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)

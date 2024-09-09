@@ -16,31 +16,18 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexmprog.thecocktails.core.model.Category
 import com.alexmprog.thecocktails.core.ui.state.ViewState
 
 @Composable
-internal fun CategoriesListRoute(
-    viewModel: CategoriesListViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier,
-    onCategoryClick: (Category) -> Unit
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    CategoriesListScreen(uiState, modifier, onCategoryClick)
-}
-
-@Composable
 internal fun CategoriesListScreen(
     uiState: ViewState<List<Category>>,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onCategoryClick: (Category) -> Unit
 ) {
     Surface {

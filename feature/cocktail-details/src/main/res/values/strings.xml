@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_cocktail_details_category_template">Category: %s</string>
+    <string name="feature_cocktail_details_glass_template">Glass: %s</string>
+    <string name="feature_cocktail_details_ingredients_template">Ingredients: %s</string>
+    <string name="feature_cocktail_details_instructions_template">Instructions: %s</string>
+</resources>

@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_cocktails">Cocktails</string>
-    <string name="feature_cocktails_category_template">Category: %s</string>
-    <string name="feature_cocktails_glass_template">Glass: %s</string>
-    <string name="feature_cocktails_ingredients_template">Ingredients: %s</string>
-    <string name="feature_cocktails_instructions_template">Instructions: %s</string>
 </resources>

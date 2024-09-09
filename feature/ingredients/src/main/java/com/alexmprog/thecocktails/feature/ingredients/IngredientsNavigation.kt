@@ -2,6 +2,9 @@ package com.alexmprog.thecocktails.feature.ingredients
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.alexmprog.thecocktails.core.model.Ingredient
@@ -18,6 +21,8 @@ fun NavGraphBuilder.ingredientsScreenRoute(onIngredientClick: (Ingredient) -> Un
         exitTransition = { fadeOut() },
         popExitTransition = { fadeOut() }
     ) {
-        IngredientsListRoute(onIngredientClick = onIngredientClick)
+        val viewModel = hiltViewModel<IngredientsListViewModel>()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        IngredientsListScreen(uiState, onIngredientClick = onIngredientClick)
     }
 }
