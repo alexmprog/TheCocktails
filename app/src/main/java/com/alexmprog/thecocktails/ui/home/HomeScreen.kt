@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.feature.home
+package com.alexmprog.thecocktails.ui.home
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
@@ -46,6 +46,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.alexmprog.thecocktails.R
 import com.alexmprog.thecocktails.categories.list.CategoriesListScreenRoute
 import com.alexmprog.thecocktails.categories.list.categoriesScreenRoute
 import com.alexmprog.thecocktails.core.model.Category
@@ -69,17 +70,17 @@ internal fun HomeScreen(
     val navBarItems = remember {
         listOf(
             NavItem(
-                titleRes = R.string.feature_home_categories,
+                titleRes = R.string.categories,
                 screenRoute = CategoriesListScreenRoute,
                 selectedIcon = Icons.Filled.Search,
                 unselectedIcon = Icons.Outlined.Search
             ), NavItem(
-                titleRes = R.string.feature_home_ingredients,
+                titleRes = R.string.ingredients,
                 screenRoute = IngredientsListScreenRoute,
                 selectedIcon = Icons.Filled.Info,
                 unselectedIcon = Icons.Outlined.Info
             ), NavItem(
-                titleRes = R.string.feature_home_glasses,
+                titleRes = R.string.glasses,
                 screenRoute = GlassesListScreenRoute,
                 selectedIcon = Icons.Filled.ShoppingCart,
                 unselectedIcon = Icons.Outlined.ShoppingCart
@@ -87,13 +88,9 @@ internal fun HomeScreen(
         )
     }
     val navController = rememberNavController()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination?.route
-    val findItem = navBarItems.find { it.screenRoute.javaClass.canonicalName == currentDestination }
     if (useBottomBar) {
         HomeBottomBar(
             navBarItems,
-            findItem,
             navController,
             onCategoryClick,
             onIngredientClick,
@@ -103,7 +100,6 @@ internal fun HomeScreen(
     } else {
         HomeModalDrawer(
             navBarItems,
-            findItem,
             navController,
             onCategoryClick,
             onIngredientClick,
@@ -117,17 +113,19 @@ internal fun HomeScreen(
 @Composable
 private fun HomeBottomBar(
     navItems: List<NavItem>,
-    currentItem: NavItem?,
-    navHostController: NavHostController,
+    navController: NavHostController,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
     onGlassClick: (Glass) -> Unit,
     onSettingsClick: () -> Unit,
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination?.route
+    val findItem = navItems.find { it.screenRoute.javaClass.canonicalName == currentDestination }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            currentItem?.let {
+            findItem?.let {
                 TopAppBar(title = { Text(stringResource(it.titleRes)) },
                     actions = {
                         IconButton(onClick = { onSettingsClick() }) {
@@ -140,7 +138,7 @@ private fun HomeBottomBar(
             }
         },
         bottomBar = {
-            HomeNavigationBar(navItems, navHostController)
+            HomeNavigationBar(navItems, navController)
         }
     )
     { innerPadding ->
@@ -148,7 +146,7 @@ private fun HomeBottomBar(
             Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            navHostController,
+            navController,
             onCategoryClick,
             onIngredientClick,
             onGlassClick
@@ -192,13 +190,15 @@ private fun HomeNavigationBar(
 @Composable
 private fun HomeModalDrawer(
     navItems: List<NavItem>,
-    currentItem: NavItem?,
-    navHostController: NavHostController,
+    navController: NavHostController,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
     onGlassClick: (Glass) -> Unit,
     onSettingsClick: () -> Unit
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination?.route
+    val findItem = navItems.find { it.screenRoute.javaClass.canonicalName == currentDestination }
     var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
@@ -230,9 +230,9 @@ private fun HomeModalDrawer(
                             },
                             onClick = {
                                 coroutineScope.launch { drawerState.close() }
-                                navHostController.navigate(item.screenRoute) {
+                                navController.navigate(item.screenRoute) {
                                     selectedTabIndex = index
-                                    popUpTo(navHostController.graph.findStartDestination().id) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
                                         saveState = true
                                     }
                                     launchSingleTop = true
@@ -248,7 +248,7 @@ private fun HomeModalDrawer(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                currentItem?.let {
+                findItem?.let {
                     TopAppBar(title = { Text(stringResource(it.titleRes)) },
                         navigationIcon = {
                             IconButton(onClick = {
@@ -280,7 +280,7 @@ private fun HomeModalDrawer(
                 Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
-                navHostController,
+                navController,
                 onCategoryClick,
                 onIngredientClick,
                 onGlassClick

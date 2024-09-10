@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
 import com.alexmprog.thecocktails.feature.cocktail.details.cocktailDetailsScreenRoute
 import com.alexmprog.thecocktails.feature.cocktail.details.navigateToCocktailDetails
-import com.alexmprog.thecocktails.feature.home.HomeScreenRoute
-import com.alexmprog.thecocktails.feature.home.homeScreenRoute
+import com.alexmprog.thecocktails.ui.home.HomeScreenRoute
+import com.alexmprog.thecocktails.ui.home.homeScreenRoute
 import com.alexmprog.thecocktails.feature.settings.navigateToSettings
 import com.alexmprog.thecocktails.feature.settings.settingsScreenRoute
 import com.alexmprog.thecocktails.festure.cocktails.list.cocktailsScreenRoute

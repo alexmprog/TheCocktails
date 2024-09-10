@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.feature.home
+package com.alexmprog.thecocktails.ui.home
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
