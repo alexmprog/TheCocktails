@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface GlassDao {
 
     @Query(value = "SELECT * FROM Glass")
-    fun gerGlassEntities(): Flow<List<GlassEntity>>
+    fun getGlassEntities(): Flow<List<GlassEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveGlassEntities(glassEntities: List<GlassEntity>): List<Long>

@@ -25,7 +25,7 @@ internal class OfflineFirstGlassesRepository @Inject constructor(
 ) : GlassesRepository {
 
     override fun getGlasses(): Flow<List<Glass>> = networkBoundedFlow(
-        local = glassDao.gerGlassEntities(),
+        local = glassDao.getGlassEntities(),
         remote = { networkDataSource.getGlasses() },
         save = { glassDao.saveGlassEntities(it.map { it.toEntity() }) }
     ).map { it.map { it.toModel() } }
