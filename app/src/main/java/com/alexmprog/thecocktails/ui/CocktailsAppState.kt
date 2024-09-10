@@ -5,17 +5,20 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.alexmprog.thecocktails.core.model.UserSettings
 
 @Stable
 class CocktailsAppState(
-    val navController: NavHostController
+    val navController: NavHostController,
+    val userSettings: UserSettings
 )
 
 @Composable
 fun rememberCocktailsAppState(
     mainNavController: NavHostController = rememberNavController(),
+    userSettings: UserSettings
 ): CocktailsAppState {
-    return remember(mainNavController) {
-        CocktailsAppState(navController = mainNavController)
+    return remember(mainNavController, userSettings) {
+        CocktailsAppState(navController = mainNavController, userSettings = userSettings)
     }
 }

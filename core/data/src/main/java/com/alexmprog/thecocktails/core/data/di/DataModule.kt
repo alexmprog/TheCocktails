@@ -8,6 +8,8 @@ import com.alexmprog.thecocktails.core.data.repository.OfflineFirstCategoriesRep
 import com.alexmprog.thecocktails.core.data.repository.OnlineCocktailsRepository
 import com.alexmprog.thecocktails.core.data.repository.OfflineFirstGlassesRepository
 import com.alexmprog.thecocktails.core.data.repository.OfflineFirstIngredientsRepository
+import com.alexmprog.thecocktails.core.data.repository.PrefsUserSettingsRepository
+import com.alexmprog.thecocktails.core.data.repository.UserSettingsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -41,5 +43,11 @@ internal abstract class DataModule {
     abstract fun bindsGlassesRepository(
         glassesRepository: OfflineFirstGlassesRepository,
     ): GlassesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsUserSettingsRepository(
+        userSettingsRepository: PrefsUserSettingsRepository,
+    ): UserSettingsRepository
 
 }

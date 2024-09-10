@@ -17,7 +17,8 @@ fun NavGraphBuilder.homeScreenRoute(
     useBottomBar: Boolean,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
-    onGlassClick: (Glass) -> Unit
+    onGlassClick: (Glass) -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     composable<HomeScreenRoute>(
         enterTransition = { fadeIn() },
@@ -25,6 +26,6 @@ fun NavGraphBuilder.homeScreenRoute(
         exitTransition = { fadeOut() },
         popExitTransition = { fadeOut() }
     ) {
-        HomeScreen(useBottomBar, onCategoryClick, onIngredientClick, onGlassClick)
+        HomeScreen(useBottomBar, onCategoryClick, onIngredientClick, onGlassClick, onSettingsClick)
     }
 }

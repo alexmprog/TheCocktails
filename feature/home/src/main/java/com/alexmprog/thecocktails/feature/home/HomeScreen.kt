@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Search
@@ -62,7 +63,8 @@ internal fun HomeScreen(
     useBottomBar: Boolean,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
-    onGlassClick: (Glass) -> Unit
+    onGlassClick: (Glass) -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     val navBarItems = remember {
         listOf(
@@ -95,7 +97,8 @@ internal fun HomeScreen(
             navController,
             onCategoryClick,
             onIngredientClick,
-            onGlassClick
+            onGlassClick,
+            onSettingsClick
         )
     } else {
         HomeModalDrawer(
@@ -104,7 +107,8 @@ internal fun HomeScreen(
             navController,
             onCategoryClick,
             onIngredientClick,
-            onGlassClick
+            onGlassClick,
+            onSettingsClick
         )
     }
 }
@@ -117,13 +121,22 @@ private fun HomeBottomBar(
     navHostController: NavHostController,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
-    onGlassClick: (Glass) -> Unit
+    onGlassClick: (Glass) -> Unit,
+    onSettingsClick: () -> Unit,
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             currentItem?.let {
-                TopAppBar(title = { Text(stringResource(it.titleRes)) })
+                TopAppBar(title = { Text(stringResource(it.titleRes)) },
+                    actions = {
+                        IconButton(onClick = { onSettingsClick() }) {
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = null
+                            )
+                        }
+                    })
             }
         },
         bottomBar = {
@@ -183,7 +196,8 @@ private fun HomeModalDrawer(
     navHostController: NavHostController,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
-    onGlassClick: (Glass) -> Unit
+    onGlassClick: (Glass) -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -246,6 +260,14 @@ private fun HomeModalDrawer(
                             }) {
                                 Icon(
                                     imageVector = Icons.Default.Menu,
+                                    contentDescription = null
+                                )
+                            }
+                        },
+                        actions = {
+                            IconButton(onClick = { onSettingsClick() }) {
+                                Icon(
+                                    imageVector = Icons.Default.Settings,
                                     contentDescription = null
                                 )
                             }

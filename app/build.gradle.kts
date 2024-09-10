@@ -31,10 +31,12 @@ android {
 
 dependencies {
     implementation(projects.core.model)
+    implementation(projects.core.domain)
     implementation(projects.core.ui)
     implementation(projects.feature.cocktailsList)
     implementation(projects.feature.cocktailDetails)
     implementation(projects.feature.home)
+    implementation(projects.feature.settings)
     implementation(libs.androidx.core.ktx)
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
