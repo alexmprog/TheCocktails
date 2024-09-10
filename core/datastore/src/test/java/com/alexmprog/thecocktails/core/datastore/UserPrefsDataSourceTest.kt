@@ -37,12 +37,6 @@ class UserPrefsDataSourceTest {
         assertFalse(subject.getUserPrefs().first().useDynamicColors)
     }
 
-//    @Test
-//    fun userShouldHideOnboardingIsTrueWhenSet() = testScope.runTest {
-//        subject.setShouldHideOnboarding(true)
-//        assertTrue(subject.userData.first().shouldHideOnboarding)
-//    }
-//
 }
 
 internal fun TemporaryFolder.testUserPrefsDataStore(coroutineScope: CoroutineScope) =

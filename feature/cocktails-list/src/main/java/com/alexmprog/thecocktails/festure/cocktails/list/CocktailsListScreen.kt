@@ -117,7 +117,7 @@ internal fun CocktailsListScreen(
                     }
                 }
             } else {
-                CircularProgressIndicator(Modifier.size(50.dp))
+                CircularProgressIndicator(Modifier.size(40.dp))
             }
         }
     }
