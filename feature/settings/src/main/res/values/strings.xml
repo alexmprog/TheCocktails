@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_settings_settings">Settings</string>
+    <string name="feature_settings_use_navigation_bar">Use bottom navigation bar</string>
+    <string name="feature_settings_use_dynamic_colors">Use dynamic colors</string>
+    <string name="feature_settings_save">Save</string>
+</resources>

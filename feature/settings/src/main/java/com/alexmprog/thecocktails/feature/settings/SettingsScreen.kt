@@ -1,5 +1,6 @@
 package com.alexmprog.thecocktails.feature.settings
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,10 +23,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.alexmprog.thecocktails.core.model.UserSettings
 import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.feature.cocktail.settings.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,62 +38,64 @@ internal fun SettingsScreen(
     navigateUp: () -> Unit,
     onSaveClick: (UserSettings) -> Unit
 ) {
-    if (uiState is ViewState.Success) {
-        var useBottomNavBar by remember { mutableStateOf(uiState.data.useBottomNavBar) }
-        var useDynamicColors by remember { mutableStateOf(uiState.data.useDynamicColors) }
-        Scaffold(modifier,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            "Settings",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            textAlign = TextAlign.Start
+    Scaffold(modifier,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        stringResource(R.string.feature_settings_settings),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        textAlign = TextAlign.Start
+                    )
+                },
+                navigationIcon = {
+                    IconButton(onClick = navigateUp) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = null
                         )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = navigateUp) {
-                            Icon(
-                                imageVector = Icons.Default.ArrowBack,
-                                contentDescription = null
-                            )
-                        }
-                    },
-                )
-            }) { innerPadding ->
-            Column(
-                modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                    }
+                },
+            )
+        }) { innerPadding ->
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (uiState is ViewState.Success) {
+                var useBottomNavBar by remember { mutableStateOf(uiState.data.useBottomNavBar) }
+                var useDynamicColors by remember { mutableStateOf(uiState.data.useDynamicColors) }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
                     Text(
-                        "Use bottom navigation bar",
-                        modifier = Modifier
-                            .padding(8.dp),
+                        stringResource(R.string.feature_settings_use_navigation_bar),
                         textAlign = TextAlign.Start
                     )
-                    Switch(modifier = Modifier
-                        .padding(8.dp),
-                        checked = useBottomNavBar,
-                        onCheckedChange = { useBottomNavBar = it })
+                    Switch(checked = useBottomNavBar, onCheckedChange = { useBottomNavBar = it })
                 }
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
                     Text(
-                        "Use dynamic colors",
-                        modifier = Modifier
-                            .padding(8.dp),
+                        stringResource(R.string.feature_settings_use_dynamic_colors),
                         textAlign = TextAlign.Start
                     )
-                    Switch(modifier = Modifier
-                        .padding(8.dp),
-                        checked = useDynamicColors,
-                        onCheckedChange = { useDynamicColors = it })
+                    Switch(checked = useDynamicColors, onCheckedChange = { useDynamicColors = it })
                 }
-                Button(modifier = Modifier
-                    .padding(8.dp), onClick = {
+                Button(modifier = Modifier.padding(8.dp), onClick = {
                     onSaveClick(
                         UserSettings(
                             useDynamicColors = useDynamicColors,
@@ -99,9 +104,8 @@ internal fun SettingsScreen(
                     )
                 }) {
                     Text(
-                        "Save",
-                        modifier = Modifier
-                            .padding(8.dp),
+                        stringResource(R.string.feature_settings_save),
+                        modifier = Modifier.padding(8.dp),
                         textAlign = TextAlign.Start
                     )
                 }
