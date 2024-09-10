@@ -16,9 +16,7 @@ data class UserPrefs(
 
 internal object UserPrefsSerializer : Serializer<UserPrefs> {
 
-    override val defaultValue = UserPrefs(
-        useBottomNavBar = false, useDynamicColors = false
-    )
+    override val defaultValue = UserPrefs()
 
     override suspend fun readFrom(input: InputStream): UserPrefs {
         try {

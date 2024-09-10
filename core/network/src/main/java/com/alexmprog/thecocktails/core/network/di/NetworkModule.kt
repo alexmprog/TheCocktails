@@ -5,6 +5,7 @@ import coil.ImageLoader
 import coil.util.DebugLogger
 import com.alexmprog.thecocktails.core.network.BuildConfig
 import com.alexmprog.thecocktails.core.network.NetworkDataSource
+import com.alexmprog.thecocktails.core.network.demo.DemoAssetManager
 import com.alexmprog.thecocktails.core.network.retrofit.RetrofitDataSource
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -39,6 +40,12 @@ internal object NetworkModule {
                 if (BuildConfig.DEBUG) setLevel(HttpLoggingInterceptor.Level.BODY)
             },
         ).build()
+
+    @Provides
+    @Singleton
+    fun providesDemoAssetManager(
+        @ApplicationContext context: Context,
+    ): DemoAssetManager = DemoAssetManager(context.assets::open)
 
     @Provides
     @Singleton

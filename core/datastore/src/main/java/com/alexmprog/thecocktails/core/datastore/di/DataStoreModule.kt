@@ -7,6 +7,7 @@ import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.alexmprog.thecocktails.core.common.CommonDispatchers
 import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.di.ApplicationScope
 import com.alexmprog.thecocktails.core.datastore.model.UserPrefs
 import com.alexmprog.thecocktails.core.datastore.model.UserPrefsSerializer
 import dagger.Module
@@ -16,7 +17,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 private const val USER_PREFS = "user_prefs.json"
@@ -29,12 +29,12 @@ internal object DataStoreModule {
     @Provides
     fun providePreferencesDataStore(
         @ApplicationContext context: Context,
+        @ApplicationScope coroutineScope: CoroutineScope,
         @Dispatcher(CommonDispatchers.IO) ioDispatcher: CoroutineDispatcher,
-    ): DataStore<UserPrefs> = DataStoreFactory.create(serializer = UserPrefsSerializer,
-        corruptionHandler = ReplaceFileCorruptionHandler(
-            produceNewData = { UserPrefs() }
-        ),
-        scope = CoroutineScope(ioDispatcher + SupervisorJob()))
+    ): DataStore<UserPrefs> = DataStoreFactory.create(
+        serializer = UserPrefsSerializer,
+        scope = CoroutineScope(coroutineScope.coroutineContext + ioDispatcher)
+    )
     {
         context.preferencesDataStoreFile(USER_PREFS)
     }

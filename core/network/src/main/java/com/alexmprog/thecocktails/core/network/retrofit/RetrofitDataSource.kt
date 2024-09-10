@@ -15,7 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private interface NetworkService {
+internal interface NetworkService {
 
     @GET("list.php?c=list")
     suspend fun getCategories(): CategoriesResponse
