@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexmprog.thecocktails.core.domain.GetCategoriesUseCase
 import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.ui.state.ErrorText
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +19,18 @@ internal class CategoriesListViewModel @Inject constructor(
     getCategoriesUseCase: GetCategoriesUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<ViewState<List<Category>>> = getCategoriesUseCase()
-        .map { ViewState.Success(it) }
+    val uiState: StateFlow<UiState<List<Category>>> = getCategoriesUseCase()
+        .map {
+            when (it) {
+                is Resource.Success -> UiState.Success(it.data)
+                is Resource.Error -> UiState.Error(
+                    ErrorText.StringResource(com.alexmprog.thecocktails.core.ui.R.string.core_ui_network_error)
+                )
+            }
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ViewState.Loading,
+            initialValue = UiState.Loading,
         )
 }

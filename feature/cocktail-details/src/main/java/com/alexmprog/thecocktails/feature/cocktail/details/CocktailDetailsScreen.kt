@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,7 +14,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,14 +28,15 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.alexmprog.thecocktails.core.model.Cocktail
 import com.alexmprog.thecocktails.core.model.CocktailDetails
-import com.alexmprog.thecocktails.core.ui.state.ViewState
-
+import com.alexmprog.thecocktails.core.ui.components.ErrorView
+import com.alexmprog.thecocktails.core.ui.components.LoadingView
+import com.alexmprog.thecocktails.core.ui.state.UiState
 
 @OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun CocktailDetailsScreen(
     cocktail: Cocktail,
-    details: ViewState<CocktailDetails>,
+    detailsState: UiState<CocktailDetails>,
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
     modifier: Modifier = Modifier,
@@ -89,55 +90,56 @@ internal fun CocktailDetailsScreen(
                         .height(300.dp)
                 )
 
-                if (details is ViewState.Success) {
-                    Text(
-                        stringResource(
-                            R.string.feature_cocktail_details_category_template,
-                            details.data.category
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        textAlign = TextAlign.Start
-                    )
-                    Text(
-                        stringResource(
-                            R.string.feature_cocktail_details_glass_template,
-                            details.data.glass
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        textAlign = TextAlign.Start
-                    )
-                    Text(
-                        stringResource(
-                            R.string.feature_cocktail_details_ingredients_template,
-                            details.data.ingredients.joinToString(", ")
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        textAlign = TextAlign.Start
-                    )
-                    Text(
-                        stringResource(
-                            R.string.feature_cocktail_details_instructions_template,
-                            details.data.description
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        textAlign = TextAlign.Start
-                    )
-                } else {
-                    LinearProgressIndicator(
-                        Modifier
-                            .fillMaxWidth()
-                            .height(4.dp)
-                    )
+                when (detailsState) {
+                    is UiState.Loading -> LoadingView()
+                    is UiState.Error -> ErrorView(detailsState.error, {})
+                    is UiState.Success -> CocktailDetails(detailsState.data)
                 }
             }
         }
     }
+}
+
+@Composable
+internal fun ColumnScope.CocktailDetails(details: CocktailDetails) {
+    Text(
+        stringResource(
+            R.string.feature_cocktail_details_category_template,
+            details.category
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        textAlign = TextAlign.Start
+    )
+    Text(
+        stringResource(
+            R.string.feature_cocktail_details_glass_template,
+            details.glass
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        textAlign = TextAlign.Start
+    )
+    Text(
+        stringResource(
+            R.string.feature_cocktail_details_ingredients_template,
+            details.ingredients.joinToString(", ")
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        textAlign = TextAlign.Start
+    )
+    Text(
+        stringResource(
+            R.string.feature_cocktail_details_instructions_template,
+            details.description
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        textAlign = TextAlign.Start
+    )
 }

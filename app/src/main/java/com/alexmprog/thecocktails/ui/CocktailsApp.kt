@@ -2,6 +2,8 @@ package com.alexmprog.thecocktails.ui
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,6 +27,10 @@ fun CocktailsApp(appState: CocktailsAppState) {
             navController = navController,
             startDestination = HomeScreenRoute,
             modifier = Modifier.fillMaxSize(),
+            enterTransition = { fadeIn() },
+            popEnterTransition = { fadeIn() },
+            exitTransition = { fadeOut() },
+            popExitTransition = { fadeOut() }
         ) {
             homeScreenRoute(
                 useBottomBar = appState.userSettings.useBottomNavBar,

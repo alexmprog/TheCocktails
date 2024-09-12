@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.alexmprog.thecocktails.core.domain.GetCocktailsUseCase
 import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.ui.state.ErrorText
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,11 +24,18 @@ internal class CocktailsListViewModel @Inject constructor(
 
     private val route: CocktailsListScreenRoute = savedStateHandle.toRoute()
 
-    val uiState: StateFlow<ViewState<List<Cocktail>>> = getCocktailsUseCase(route.id, route.source)
-        .map { ViewState.Success(it) }
+    val uiState: StateFlow<UiState<List<Cocktail>>> = getCocktailsUseCase(route.id, route.source)
+        .map {
+            when (it) {
+                is Resource.Success -> UiState.Success(it.data)
+                is Resource.Error -> UiState.Error(
+                    ErrorText.StringResource(com.alexmprog.thecocktails.core.ui.R.string.core_ui_network_error)
+                )
+            }
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ViewState.Loading,
+            initialValue = UiState.Loading,
         )
 }

@@ -61,6 +61,6 @@ internal class RetrofitDataSource(retrofit: Retrofit) : NetworkDataSource {
     override suspend fun getCocktailsByGlass(glass: String): List<CocktailDTO> =
         networkService.getCocktailsByGlass(glass).cocktails
 
-    override suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO? =
-        networkService.getCocktailDetails(id).cocktails.firstOrNull()
+    override suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO =
+        networkService.getCocktailDetails(id).cocktails.first()
 }

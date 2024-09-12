@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexmprog.thecocktails.core.domain.GetGlassesUseCase
 import com.alexmprog.thecocktails.core.model.Glass
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.ui.state.ErrorText
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +19,18 @@ internal class GlassesListViewModel @Inject constructor(
     getGlassesUseCase: GetGlassesUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<ViewState<List<Glass>>> = getGlassesUseCase()
-        .map { ViewState.Success(it) }
+    val uiState: StateFlow<UiState<List<Glass>>> = getGlassesUseCase()
+        .map {
+            when (it) {
+                is Resource.Success -> UiState.Success(it.data)
+                is Resource.Error -> UiState.Error(
+                    ErrorText.StringResource(com.alexmprog.thecocktails.core.ui.R.string.core_ui_network_error)
+                )
+            }
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ViewState.Loading,
+            initialValue = UiState.Loading,
         )
 }

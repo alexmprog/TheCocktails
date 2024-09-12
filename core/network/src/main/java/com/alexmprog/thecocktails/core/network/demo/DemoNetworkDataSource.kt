@@ -65,13 +65,13 @@ class DemoNetworkDataSource @Inject constructor(
             networkJson.decodeFromStream(CocktailsResponse::class.serializer(), it).cocktails
         }
 
-    override suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO? =
+    override suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO =
         withContext(ioDispatcher) {
             assets.open("cocktail-details.json").use {
                 networkJson.decodeFromStream(
                     CocktailDetailsResponse::class.serializer(),
                     it
-                ).cocktails.firstOrNull()
+                ).cocktails.first()
             }
         }
 }

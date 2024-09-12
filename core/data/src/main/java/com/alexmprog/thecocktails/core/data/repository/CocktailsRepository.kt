@@ -5,22 +5,27 @@ import com.alexmprog.thecocktails.core.common.Dispatcher
 import com.alexmprog.thecocktails.core.model.Cocktail
 import com.alexmprog.thecocktails.core.model.CocktailDetails
 import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
+import com.alexmprog.thecocktails.core.model.ErrorType
+import com.alexmprog.thecocktails.core.model.Resource
 import com.alexmprog.thecocktails.core.network.NetworkDataSource
 import com.alexmprog.thecocktails.core.network.model.CocktailDTO
 import com.alexmprog.thecocktails.core.network.model.CocktailDetailsDTO
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapNotNull
 import javax.inject.Inject
 
 interface CocktailsRepository {
 
-    fun getCocktailsBySource(id: String, source: CocktailsSearchSource): Flow<List<Cocktail>>
+    fun getCocktailsBySource(
+        id: String,
+        source: CocktailsSearchSource
+    ): Flow<Resource<List<Cocktail>>>
 
-    fun getCocktailDetails(id: Int): Flow<CocktailDetails>
+    fun getCocktailDetails(id: Int): Flow<Resource<CocktailDetails>>
 }
 
 internal class OnlineCocktailsRepository @Inject constructor(
@@ -28,27 +33,25 @@ internal class OnlineCocktailsRepository @Inject constructor(
     @Dispatcher(CommonDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : CocktailsRepository {
 
-    override fun getCocktailsBySource(id: String, source: CocktailsSearchSource) = flow {
-        kotlin.runCatching {
-            emit(
-                when (source) {
-                    CocktailsSearchSource.Category -> networkDataSource.getCocktailsByCategory(id)
-                    CocktailsSearchSource.Ingredient -> networkDataSource.getCocktailsByIngredient(
-                        id
-                    )
-
-                    CocktailsSearchSource.Glass -> networkDataSource.getCocktailsByGlass(id)
-                }
-            )
-        }
-    }.map { it.map { it.toModel() } }
+    override fun getCocktailsBySource(
+        id: String,
+        source: CocktailsSearchSource
+    ): Flow<Resource<List<Cocktail>>> = flow {
+        emit(
+            when (source) {
+                CocktailsSearchSource.Category -> networkDataSource.getCocktailsByCategory(id)
+                CocktailsSearchSource.Ingredient -> networkDataSource.getCocktailsByIngredient(id)
+                CocktailsSearchSource.Glass -> networkDataSource.getCocktailsByGlass(id)
+            }
+        )
+    }.map { Resource.Success(it.map { it.toModel() }) as Resource<List<Cocktail>> }
+        .catch { emit(Resource.Error(ErrorType.Network)) }
         .flowOn(ioDispatcher)
 
-    override fun getCocktailDetails(id: Int): Flow<CocktailDetails> = flow {
-        kotlin.runCatching {
-            emit(networkDataSource.getCocktailDetails(id))
-        }
-    }.mapNotNull { it?.toModel() }
+    override fun getCocktailDetails(id: Int): Flow<Resource<CocktailDetails>> = flow {
+        emit(networkDataSource.getCocktailDetails(id))
+    }.map { Resource.Success(it.toModel()) as Resource<CocktailDetails> }
+        .catch { emit(Resource.Error(ErrorType.Network)) }
         .flowOn(ioDispatcher)
 
 }

@@ -2,8 +2,6 @@ package com.alexmprog.thecocktails.festure.cocktails.list
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,12 +22,7 @@ fun NavGraphBuilder.cocktailsScreenRoute(
     onCocktailClick: (Cocktail) -> Unit,
     navigateUp: () -> Unit
 ) {
-    composable<CocktailsListScreenRoute>(
-        enterTransition = { fadeIn() },
-        popEnterTransition = { fadeIn() },
-        exitTransition = { fadeOut() },
-        popExitTransition = { fadeOut() }
-    ) {
+    composable<CocktailsListScreenRoute>{
         val viewModel = hiltViewModel<CocktailsListViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         CocktailsListScreen(

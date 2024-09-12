@@ -20,6 +20,6 @@ interface NetworkDataSource {
 
     suspend fun getCocktailsByGlass(glass: String): List<CocktailDTO>
 
-    suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO?
+    suspend fun getCocktailDetails(id: Int): CocktailDetailsDTO
 
 }
