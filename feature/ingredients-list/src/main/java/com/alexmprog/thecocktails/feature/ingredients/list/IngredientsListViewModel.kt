@@ -7,7 +7,6 @@ import com.alexmprog.thecocktails.core.model.Ingredient
 import com.alexmprog.thecocktails.core.model.Resource
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
-import com.alexmprog.thecocktails.core.ui.state.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

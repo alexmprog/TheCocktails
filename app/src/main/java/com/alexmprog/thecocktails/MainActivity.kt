@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.alexmprog.thecocktails.core.domain.GetUserSettingsUseCase
 import com.alexmprog.thecocktails.core.model.UserSettings
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import com.alexmprog.thecocktails.core.ui.theme.CocktailsTheme
 import com.alexmprog.thecocktails.ui.CocktailsApp
 import com.alexmprog.thecocktails.ui.rememberCocktailsAppState
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         // collect UserSettings during splash screen
-        var uiState: ViewState<UserSettings> by mutableStateOf(ViewState.Loading)
+        var uiState: UiState<UserSettings> by mutableStateOf(UiState.Loading)
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState
@@ -47,17 +47,19 @@ class MainActivity : ComponentActivity() {
         }
         splashScreen.setKeepOnScreenCondition {
             when (uiState) {
-                ViewState.Loading -> true
-                is ViewState.Success -> false
+                is UiState.Loading,
+                is UiState.Error -> true
+
+                is UiState.Success -> false
             }
         }
         // enable edge to edge
         enableEdgeToEdge()
         setContent {
             // it's save to skip Loading state because of Splash screen
-            if (uiState is ViewState.Success) {
+            if (uiState is UiState.Success) {
                 val appState =
-                    rememberCocktailsAppState(userSettings = (uiState as ViewState.Success).data)
+                    rememberCocktailsAppState(userSettings = (uiState as UiState.Success).data)
                 CocktailsTheme(dynamicColor = appState.userSettings.useDynamicColors) {
                     CocktailsApp(appState)
                 }

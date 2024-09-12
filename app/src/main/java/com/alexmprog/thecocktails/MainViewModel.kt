@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexmprog.thecocktails.core.domain.GetUserSettingsUseCase
 import com.alexmprog.thecocktails.core.model.UserSettings
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +17,11 @@ internal class MainViewModel @Inject constructor(
     getUserSettingsUseCase: GetUserSettingsUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<ViewState<UserSettings>> = getUserSettingsUseCase()
-        .map { ViewState.Success(it) }
+    val uiState: StateFlow<UiState<UserSettings>> = getUserSettingsUseCase()
+        .map { UiState.Success(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = ViewState.Loading,
+            initialValue = UiState.Loading,
         )
 }

@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -120,8 +121,8 @@ private fun HomeBottomBar(
     onSettingsClick: () -> Unit,
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination?.route
-    val findItem = navItems.find { it.screenRoute.javaClass.canonicalName == currentDestination }
+    val currentDestination = navBackStackEntry?.destination
+    val findItem = navItems.find { currentDestination?.hasRoute(it.screenRoute::class)==true }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {

@@ -26,14 +26,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexmprog.thecocktails.core.model.UserSettings
-import com.alexmprog.thecocktails.core.ui.state.ViewState
+import com.alexmprog.thecocktails.core.ui.state.UiState
 import com.alexmprog.thecocktails.feature.cocktail.settings.R
+
+@Composable
+internal fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
+    navigateUp: () -> Unit
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    SettingsScreen(uiState, modifier, navigateUp) { viewModel.save(it) }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsScreen(
-    uiState: ViewState<UserSettings>,
+    uiState: UiState<UserSettings>,
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit,
     onSaveClick: (UserSettings) -> Unit
@@ -66,7 +78,7 @@ internal fun SettingsScreen(
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (uiState is ViewState.Success) {
+            if (uiState is UiState.Success) {
                 var useBottomNavBar by remember { mutableStateOf(uiState.data.useBottomNavBar) }
                 var useDynamicColors by remember { mutableStateOf(uiState.data.useDynamicColors) }
                 Row(
