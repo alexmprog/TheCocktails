@@ -11,7 +11,7 @@ data class CocktailDetails(
     val category: String,
     val glass: String,
     val description: String,
-    val ingredients: List<String>
+    val measuredIngredients: List<String>
 )
 
 enum class CocktailsSearchSource {

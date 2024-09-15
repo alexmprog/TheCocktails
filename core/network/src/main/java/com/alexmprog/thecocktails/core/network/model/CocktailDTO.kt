@@ -34,7 +34,7 @@ data class CocktailDetailsDTO(
     @SerialName("strGlass")
     val glass: String,
     @SerialName("strInstructions")
-    val description: String?,
+    val description: String,
     @SerialName("strIngredient1")
     val ingredient1: String?,
     @SerialName("strIngredient2")
@@ -65,4 +65,34 @@ data class CocktailDetailsDTO(
     val ingredient14: String?,
     @SerialName("strIngredient15")
     val ingredient15: String?,
+    @SerialName("strMeasure1")
+    val measure1: String?,
+    @SerialName("strMeasure2")
+    val measure2: String?,
+    @SerialName("strMeasure3")
+    val measure3: String?,
+    @SerialName("strMeasure4")
+    val measure4: String?,
+    @SerialName("strMeasure5")
+    val measure5: String?,
+    @SerialName("strMeasure6")
+    val measure6: String?,
+    @SerialName("strMeasure7")
+    val measure7: String?,
+    @SerialName("strMeasure8")
+    val measure8: String?,
+    @SerialName("strMeasure9")
+    val measure9: String?,
+    @SerialName("strMeasure10")
+    val measure10: String?,
+    @SerialName("strMeasure11")
+    val measure11: String?,
+    @SerialName("strMeasure12")
+    val measure12: String?,
+    @SerialName("strMeasure13")
+    val measure13: String?,
+    @SerialName("strMeasure14")
+    val measure14: String?,
+    @SerialName("strMeasure15")
+    val measure15: String?
 )

@@ -22,7 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -103,43 +108,61 @@ internal fun CocktailDetailsScreen(
 @Composable
 internal fun ColumnScope.CocktailDetails(details: CocktailDetails) {
     Text(
-        stringResource(
-            R.string.feature_cocktail_details_category_template,
-            details.category
-        ),
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append(stringResource(R.string.feature_cocktail_details_category))
+            }
+            append(" ${details.category}")
+        },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp, 2.dp),
         textAlign = TextAlign.Start
     )
     Text(
-        stringResource(
-            R.string.feature_cocktail_details_glass_template,
-            details.glass
-        ),
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append(stringResource(R.string.feature_cocktail_details_glass))
+            }
+            append(" ${details.glass}")
+        },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp, 2.dp),
         textAlign = TextAlign.Start
     )
     Text(
-        stringResource(
-            R.string.feature_cocktail_details_ingredients_template,
-            details.ingredients.joinToString(", ")
-        ),
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append(stringResource(R.string.feature_cocktail_details_instructions))
+            }
+            append(" ${details.description}")
+        },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp, 2.dp),
         textAlign = TextAlign.Start
     )
+
     Text(
-        stringResource(
-            R.string.feature_cocktail_details_instructions_template,
-            details.description
-        ),
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append(stringResource(R.string.feature_cocktail_details_ingredients))
+            }
+        },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp, 2.dp),
         textAlign = TextAlign.Start
     )
+    details.measuredIngredients.forEach {
+        Text(
+            it,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp, 2.dp),
+            fontStyle = FontStyle.Italic,
+            textAlign = TextAlign.Start
+        )
+    }
 }

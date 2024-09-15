@@ -60,20 +60,26 @@ internal fun CocktailDTO.toModel(): Cocktail = Cocktail(id, name, image)
 
 internal fun CocktailDetailsDTO.toModel(): CocktailDetails {
     val ingredients = mutableListOf<String>()
-    ingredient1?.let { ingredients.add(it) }
-    ingredient2?.let { ingredients.add(it) }
-    ingredient3?.let { ingredients.add(it) }
-    ingredient4?.let { ingredients.add(it) }
-    ingredient5?.let { ingredients.add(it) }
-    ingredient6?.let { ingredients.add(it) }
-    ingredient7?.let { ingredients.add(it) }
-    ingredient8?.let { ingredients.add(it) }
-    ingredient9?.let { ingredients.add(it) }
-    ingredient10?.let { ingredients.add(it) }
-    ingredient11?.let { ingredients.add(it) }
-    ingredient12?.let { ingredients.add(it) }
-    ingredient13?.let { ingredients.add(it) }
-    ingredient14?.let { ingredients.add(it) }
-    ingredient15?.let { ingredients.add(it) }
-    return CocktailDetails(id, category, glass, description ?: "", ingredients)
+    val addMeasuredIngredient: (String?, String?) -> Unit = { ingredient, measure ->
+        val value = if (!ingredient.isNullOrEmpty()) {
+            if (!measure.isNullOrEmpty()) "$measure $ingredient" else ingredient
+        } else null
+        value?.let { ingredients.add(it) }
+    }
+    addMeasuredIngredient(ingredient1, measure1)
+    addMeasuredIngredient(ingredient2, measure2)
+    addMeasuredIngredient(ingredient3, measure3)
+    addMeasuredIngredient(ingredient4, measure4)
+    addMeasuredIngredient(ingredient5, measure5)
+    addMeasuredIngredient(ingredient6, measure6)
+    addMeasuredIngredient(ingredient7, measure7)
+    addMeasuredIngredient(ingredient8, measure8)
+    addMeasuredIngredient(ingredient9, measure9)
+    addMeasuredIngredient(ingredient10, measure10)
+    addMeasuredIngredient(ingredient11, measure11)
+    addMeasuredIngredient(ingredient12, measure12)
+    addMeasuredIngredient(ingredient13, measure13)
+    addMeasuredIngredient(ingredient14, measure14)
+    addMeasuredIngredient(ingredient15, measure15)
+    return CocktailDetails(id, category, glass, description, ingredients)
 }
