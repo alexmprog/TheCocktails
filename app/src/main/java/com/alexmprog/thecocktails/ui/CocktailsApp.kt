@@ -33,7 +33,6 @@ fun CocktailsApp(appState: CocktailsAppState) {
             popExitTransition = { fadeOut() }
         ) {
             homeScreenRoute(
-                useBottomBar = appState.userSettings.useBottomNavBar,
                 onCategoryClick = {
                     navController.navigateToCocktails(it.name, CocktailsSearchSource.Category)
                 }, onIngredientClick = {

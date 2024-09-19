@@ -79,21 +79,7 @@ internal fun SettingsScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (uiState is UiState.Success) {
-                var useBottomNavBar by remember { mutableStateOf(uiState.data.useBottomNavBar) }
                 var useDynamicColors by remember { mutableStateOf(uiState.data.useDynamicColors) }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        stringResource(R.string.feature_settings_use_navigation_bar),
-                        textAlign = TextAlign.Start
-                    )
-                    Switch(checked = useBottomNavBar, onCheckedChange = { useBottomNavBar = it })
-                }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -110,8 +96,7 @@ internal fun SettingsScreen(
                 Button(modifier = Modifier.padding(8.dp), onClick = {
                     onSaveClick(
                         UserSettings(
-                            useDynamicColors = useDynamicColors,
-                            useBottomNavBar = useBottomNavBar
+                            useDynamicColors = useDynamicColors
                         )
                     )
                 }) {

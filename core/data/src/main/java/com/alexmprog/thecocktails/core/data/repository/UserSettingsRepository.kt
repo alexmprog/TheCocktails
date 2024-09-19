@@ -35,7 +35,7 @@ internal class PrefsUserSettingsRepository @Inject constructor(
 }
 
 private fun UserPrefs.toModel(): UserSettings =
-    UserSettings(useBottomNavBar = useBottomNavBar, useDynamicColors = useDynamicColors)
+    UserSettings(useDynamicColors = useDynamicColors)
 
 private fun UserSettings.toPrefs(): UserPrefs =
-    UserPrefs(useBottomNavBar = useBottomNavBar, useDynamicColors = useDynamicColors)
+    UserPrefs(useDynamicColors = useDynamicColors)

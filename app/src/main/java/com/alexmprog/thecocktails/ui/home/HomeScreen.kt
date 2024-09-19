@@ -21,8 +21,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -41,7 +39,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -62,7 +59,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun HomeScreen(
-    useBottomBar: Boolean,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
     onGlassClick: (Glass) -> Unit,
@@ -89,102 +85,14 @@ internal fun HomeScreen(
         )
     }
     val navController = rememberNavController()
-    if (useBottomBar) {
-        HomeBottomBar(
-            navBarItems,
-            navController,
-            onCategoryClick,
-            onIngredientClick,
-            onGlassClick,
-            onSettingsClick
-        )
-    } else {
-        HomeModalDrawer(
-            navBarItems,
-            navController,
-            onCategoryClick,
-            onIngredientClick,
-            onGlassClick,
-            onSettingsClick
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun HomeBottomBar(
-    navItems: List<NavItem>,
-    navController: NavHostController,
-    onCategoryClick: (Category) -> Unit,
-    onIngredientClick: (Ingredient) -> Unit,
-    onGlassClick: (Glass) -> Unit,
-    onSettingsClick: () -> Unit,
-) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-    val findItem = navItems.find { currentDestination?.hasRoute(it.screenRoute::class)==true }
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            findItem?.let {
-                TopAppBar(title = { Text(stringResource(it.titleRes)) },
-                    actions = {
-                        IconButton(onClick = { onSettingsClick() }) {
-                            Icon(
-                                imageVector = Icons.Default.Settings,
-                                contentDescription = null
-                            )
-                        }
-                    })
-            }
-        },
-        bottomBar = {
-            HomeNavigationBar(navItems, navController)
-        }
+    HomeModalDrawer(
+        navBarItems,
+        navController,
+        onCategoryClick,
+        onIngredientClick,
+        onGlassClick,
+        onSettingsClick
     )
-    { innerPadding ->
-        HomeHavHost(
-            Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            navController,
-            onCategoryClick,
-            onIngredientClick,
-            onGlassClick
-        )
-    }
-}
-
-@Composable
-private fun HomeNavigationBar(
-    navItems: List<NavItem>,
-    navHostController: NavHostController
-) {
-    var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
-    NavigationBar {
-        navItems.forEachIndexed { index, item ->
-            NavigationBarItem(
-                selected = selectedTabIndex == index,
-                onClick = {
-                    selectedTabIndex = index
-                    navHostController.navigate(item.screenRoute) {
-                        popUpTo(navHostController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                },
-                icon = {
-                    Icon(
-                        imageVector = if (selectedTabIndex == index) item.selectedIcon
-                        else item.unselectedIcon,
-                        contentDescription = stringResource(item.titleRes)
-                    )
-                },
-                label = { Text(stringResource(item.titleRes)) })
-        }
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

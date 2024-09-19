@@ -14,7 +14,6 @@ import kotlinx.serialization.Serializable
 data object HomeScreenRoute : ScreenRoute
 
 fun NavGraphBuilder.homeScreenRoute(
-    useBottomBar: Boolean,
     onCategoryClick: (Category) -> Unit,
     onIngredientClick: (Ingredient) -> Unit,
     onGlassClick: (Glass) -> Unit,
@@ -26,6 +25,6 @@ fun NavGraphBuilder.homeScreenRoute(
         exitTransition = { fadeOut() },
         popExitTransition = { fadeOut() }
     ) {
-        HomeScreen(useBottomBar, onCategoryClick, onIngredientClick, onGlassClick, onSettingsClick)
+        HomeScreen(onCategoryClick, onIngredientClick, onGlassClick, onSettingsClick)
     }
 }
