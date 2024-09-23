@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.convention.android.application.compose)
     alias(libs.plugins.convention.hilt)
     alias(libs.plugins.convention.serialization)
+    alias(libs.plugins.graph)
 }
 
 android {
@@ -53,4 +54,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.compose.ui.test)
     debugImplementation(libs.androidx.compose.ui.testManifest)
+}
+
+moduleGraphConfig {
+    readmePath.set("../README.md")
+    heading = "## Module Graph"
 }

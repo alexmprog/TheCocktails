@@ -24,7 +24,38 @@ It simply loads data from API and stores it in persistence storage (i.e. SQLite 
 [Coil](https://coil-kt.github.io/coil/) - An image loading library for Android.<br>
 [Kotlin Serialization]([https://github.com/square/moshi](https://kotlinlang.org/docs/serialization.html)) - A modern JSON library for Kotlin and Java.<br>
 [Testing](https://developer.android.com/training/testing) - App contains different kinds of tests: Local Unit, Integration, UI, End2End tests.<br>
+## Module Graph
+```mermaid
+%%{
+  init: {
+    'theme': 'neutral'
+  }
+}%%
 
+graph LR
+  subgraph :core
+    :core:model["model"]
+    :core:domain["domain"]
+    :core:ui["ui"]
+  end
+  subgraph :feature
+    :feature:categories-list["categories-list"]
+    :feature:cocktails-list["cocktails-list"]
+    :feature:cocktail-details["cocktail-details"]
+    :feature:glasses-list["glasses-list"]
+    :feature:ingredients-list["ingredients-list"]
+    :feature:settings["settings"]
+  end
+  :app --> :core:model
+  :app --> :core:domain
+  :app --> :core:ui
+  :app --> :feature:categories-list
+  :app --> :feature:cocktails-list
+  :app --> :feature:cocktail-details
+  :app --> :feature:glasses-list
+  :app --> :feature:ingredients-list
+  :app --> :feature:settings
+```
 ## Modules Overview
 The project is divided into several modules:
 - :app:mobile - Android app module for phone devices.
