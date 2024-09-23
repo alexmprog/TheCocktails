@@ -1,6 +1,6 @@
 # TheCocktails
 
-![GitHub Logo](/screenshots/cocktails_app_flow.gif)
+![GitHub Logo](/screenshots/app_flow.gif)
 
 ## About
 It simply loads data from API and stores it in persistence storage (i.e. SQLite Database).
