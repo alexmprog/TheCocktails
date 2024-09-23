@@ -1,13 +1,7 @@
-import dev.iurysouza.modulegraph.LinkText
-import dev.iurysouza.modulegraph.ModuleType
-import dev.iurysouza.modulegraph.Orientation
-import dev.iurysouza.modulegraph.Theme
-
 plugins {
     alias(libs.plugins.convention.android.application.compose)
     alias(libs.plugins.convention.hilt)
     alias(libs.plugins.convention.serialization)
-    alias(libs.plugins.graph)
 }
 
 android {
@@ -59,31 +53,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.compose.ui.test)
     debugImplementation(libs.androidx.compose.ui.testManifest)
-}
-
-moduleGraphConfig {
-    readmePath.set("../README.md")
-    heading = "## Module Graph"
-    showFullPath.set(false)
-    orientation.set(Orientation.TOP_TO_BOTTOM)
-    linkText.set(LinkText.NONE)
-    setStyleByModuleType.set(true)
-    theme.set(
-        Theme.BASE(
-            themeVariables = mapOf(
-                // Text
-                "primaryTextColor" to "#F6F8FAff",
-                // Node
-                "primaryColor" to "#5a4f7c",
-                // Node border
-                "primaryBorderColor" to "#5a4f7c",
-                // Container box background
-                "tertiaryColor" to "#40375c",
-                "lineColor" to "#f5a623",
-                "fontSize" to "12px",
-            ),
-            focusColor = "#F5A622",
-            moduleTypes = listOf(ModuleType.Kotlin("#2C4162")),
-        ),
-    )
 }

@@ -39,15 +39,26 @@ graph TB
     :core:model["model"]
     :core:domain["domain"]
     :core:ui["ui"]
+    :core:data["data"]
+    :core:network["network"]
+    :core:database["database"]
+    :core:datastore["datastore"]
+    :core:common["common"]
   end
   subgraph :feature
+    :feature:settings["settings"]
+    :feature:glasses-list["glasses-list"]
     :feature:categories-list["categories-list"]
     :feature:cocktails-list["cocktails-list"]
     :feature:cocktail-details["cocktail-details"]
-    :feature:glasses-list["glasses-list"]
     :feature:ingredients-list["ingredients-list"]
-    :feature:settings["settings"]
   end
+  :feature:settings --> :core:model
+  :feature:settings --> :core:domain
+  :feature:settings --> :core:ui
+  :feature:glasses-list --> :core:model
+  :feature:glasses-list --> :core:domain
+  :feature:glasses-list --> :core:ui
   :app --> :core:model
   :app --> :core:domain
   :app --> :core:ui
@@ -57,19 +68,46 @@ graph TB
   :app --> :feature:glasses-list
   :app --> :feature:ingredients-list
   :app --> :feature:settings
+  :core:data --> :core:model
+  :core:data --> :core:network
+  :core:data --> :core:database
+  :core:data --> :core:datastore
+  :core:data --> :core:common
+  :core:network --> :core:common
+  :feature:categories-list --> :core:model
+  :feature:categories-list --> :core:domain
+  :feature:categories-list --> :core:ui
+  :feature:cocktail-details --> :core:model
+  :feature:cocktail-details --> :core:domain
+  :feature:cocktail-details --> :core:ui
+  :feature:cocktails-list --> :core:model
+  :feature:cocktails-list --> :core:domain
+  :feature:cocktails-list --> :core:ui
+  :core:domain --> :core:model
+  :core:domain --> :core:data
+  :core:datastore --> :core:common
+  :feature:ingredients-list --> :core:model
+  :feature:ingredients-list --> :core:domain
+  :feature:ingredients-list --> :core:ui
 
+classDef android-library fill:#3BD482,stroke:#fff,stroke-width:2px,color:#fff;
+classDef kotlin-jvm fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
 classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
-classDef unknown fill:#676767,stroke:#fff,stroke-width:2px,color:#fff;
+class :feature:settings android-library
+class :core:model kotlin-jvm
+class :core:domain android-library
+class :core:ui android-library
+class :feature:glasses-list android-library
 class :app android-application
-class :core:model unknown
-class :core:domain unknown
-class :core:ui unknown
-class :feature:categories-list unknown
-class :feature:cocktails-list unknown
-class :feature:cocktail-details unknown
-class :feature:glasses-list unknown
-class :feature:ingredients-list unknown
-class :feature:settings unknown
+class :feature:categories-list android-library
+class :feature:cocktails-list android-library
+class :feature:cocktail-details android-library
+class :feature:ingredients-list android-library
+class :core:data android-library
+class :core:network android-library
+class :core:database android-library
+class :core:datastore android-library
+class :core:common kotlin-jvm
 
 ```
 ## Modules Overview
