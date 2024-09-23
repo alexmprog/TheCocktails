@@ -29,11 +29,25 @@ It simply loads data from API and stores it in persistence storage (i.e. SQLite 
 ```mermaid
 %%{
   init: {
-    'theme': 'neutral'
+    'theme': 'base',
+    'themeVariables': {"primaryTextColor":"#F6F8FAff","primaryColor":"#5a4f7c","primaryBorderColor":"#5a4f7c","tertiaryColor":"#40375c","lineColor":"#f5a623","fontSize":"12px"}
   }
 }%%
 
-graph LR
+graph TB
+  subgraph :core
+    :core:model["model"]
+    :core:domain["domain"]
+    :core:ui["ui"]
+  end
+  subgraph :feature
+    :feature:categories-list["categories-list"]
+    :feature:cocktails-list["cocktails-list"]
+    :feature:cocktail-details["cocktail-details"]
+    :feature:glasses-list["glasses-list"]
+    :feature:ingredients-list["ingredients-list"]
+    :feature:settings["settings"]
+  end
   :app --> :core:model
   :app --> :core:domain
   :app --> :core:ui
