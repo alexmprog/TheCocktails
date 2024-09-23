@@ -25,6 +25,7 @@ It simply loads data from API and stores it in persistence storage (i.e. SQLite 
 [Kotlin Serialization]([https://github.com/square/moshi](https://kotlinlang.org/docs/serialization.html)) - A modern JSON library for Kotlin and Java.<br>
 [Testing](https://developer.android.com/training/testing) - App contains different kinds of tests: Local Unit, Integration, UI, End2End tests.<br>
 ## Module Graph
+
 ```mermaid
 %%{
   init: {
@@ -33,19 +34,6 @@ It simply loads data from API and stores it in persistence storage (i.e. SQLite 
 }%%
 
 graph LR
-  subgraph :core
-    :core:model["model"]
-    :core:domain["domain"]
-    :core:ui["ui"]
-  end
-  subgraph :feature
-    :feature:categories-list["categories-list"]
-    :feature:cocktails-list["cocktails-list"]
-    :feature:cocktail-details["cocktail-details"]
-    :feature:glasses-list["glasses-list"]
-    :feature:ingredients-list["ingredients-list"]
-    :feature:settings["settings"]
-  end
   :app --> :core:model
   :app --> :core:domain
   :app --> :core:ui
@@ -55,6 +43,20 @@ graph LR
   :app --> :feature:glasses-list
   :app --> :feature:ingredients-list
   :app --> :feature:settings
+
+classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
+classDef unknown fill:#676767,stroke:#fff,stroke-width:2px,color:#fff;
+class :app android-application
+class :core:model unknown
+class :core:domain unknown
+class :core:ui unknown
+class :feature:categories-list unknown
+class :feature:cocktails-list unknown
+class :feature:cocktail-details unknown
+class :feature:glasses-list unknown
+class :feature:ingredients-list unknown
+class :feature:settings unknown
+
 ```
 ## Modules Overview
 The project is divided into several modules:
