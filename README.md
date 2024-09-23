@@ -112,4 +112,4 @@ class :core:common kotlin-jvm
 
 ## Architecture
 This repository uses recommended Android [App architecture](https://developer.android.com/topic/architecture).
-![Image of MVVM](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
+![Image of Clean Architecture](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
