@@ -9,7 +9,6 @@ internal fun Project.configureAndroidCompose(
 ) {
     commonExtension.apply {
         buildFeatures.compose = true
-        testOptions.unitTests.isIncludeAndroidResources = true
         dependencies {
             val bom = libs.findLibrary("androidx-compose-bom").get()
             add("implementation", platform(bom))

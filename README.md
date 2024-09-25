@@ -4,7 +4,7 @@
 
 ## About
 It simply loads data from API and stores it in persistence storage (i.e. SQLite Database).
-* User real [TheCocktailDB](https://www.thecocktaildb.com/) api.<br>
+* Use real [TheCocktailDB](https://www.thecocktaildb.com/) api.<br>
 * Clean and Simple Compose Material UI.<br>
 * Use Gradle version catalog and convention plugins.<br>
 * Clean architecture and MVVM.<br>

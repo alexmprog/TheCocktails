@@ -46,7 +46,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.lifecycle.runtime.compose.android)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
     implementation(libs.androidx.compose.material3)

@@ -12,7 +12,7 @@ dependencies {
     implementation(projects.core.model)
     implementation(projects.core.domain)
     implementation(projects.core.ui)
-    implementation(libs.androidx.lifecycle.runtime.compose.android)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
     implementation(libs.androidx.compose.material3)

@@ -19,6 +19,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
                 testOptions{
+                    unitTests.isIncludeAndroidResources = true
                     animationsDisabled = true
                 }
                 buildFeatures{
