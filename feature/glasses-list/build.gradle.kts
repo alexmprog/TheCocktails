@@ -16,5 +16,10 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
     implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
+    testImplementation(projects.core.testing)
+    androidTestImplementation(projects.core.testing)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.testManifest)
+    androidTestImplementation(libs.androidx.lifecycle.runtime.testing)
 }

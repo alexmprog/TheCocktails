@@ -47,5 +47,5 @@ internal class OfflineFirstIngredientsRepository @Inject constructor(
         .flowOn(ioDispatcher)
 }
 
-private fun IngredientDTO.toEntity(): IngredientEntity = IngredientEntity(name)
-private fun IngredientEntity.toModel(): Ingredient = Ingredient(name)
+fun IngredientDTO.toEntity(): IngredientEntity = IngredientEntity(name)
+fun IngredientEntity.toModel(): Ingredient = Ingredient(name)

@@ -47,6 +47,5 @@ internal class OfflineFirstGlassesRepository @Inject constructor(
         .flowOn(ioDispatcher)
 }
 
-internal fun GlassDTO.toEntity(): GlassEntity = GlassEntity(name)
-
-internal fun GlassEntity.toModel(): Glass = Glass(name)
+fun GlassDTO.toEntity(): GlassEntity = GlassEntity(name)
+fun GlassEntity.toModel(): Glass = Glass(name)

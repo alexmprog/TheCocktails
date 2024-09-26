@@ -18,3 +18,4 @@ class TestCategoriesRepository : CategoriesRepository {
         categoriesFlow.tryEmit(resource)
     }
 }
+

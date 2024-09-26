@@ -49,7 +49,6 @@ class MainActivity : ComponentActivity() {
             when (uiState) {
                 is UiState.Loading,
                 is UiState.Error -> true
-
                 is UiState.Success -> false
             }
         }

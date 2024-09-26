@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.feature.categories.list
+package com.alexmprog.thecocktails.feature.glasses.list
 
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Box
@@ -8,8 +8,7 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.alexmprog.thecocktails.categories.list.CategoriesListScreen
-import com.alexmprog.thecocktails.core.model.Category
+import com.alexmprog.thecocktails.core.model.Glass
 import com.alexmprog.thecocktails.core.testing.rules.GrantPostNotificationsPermissionRule
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
@@ -17,7 +16,7 @@ import org.junit.Rule
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class CategoriesScreenListTest {
+class GlassesListScreenTest {
 
     @get:Rule(order = 0)
     val postNotificationsPermission = GrantPostNotificationsPermissionRule()
@@ -29,9 +28,9 @@ class CategoriesScreenListTest {
     fun progressIndicator_whenScreenIsLoading_exists() {
         composeTestRule.setContent {
             Box {
-                CategoriesListScreen(
+                GlassesListScreen(
                     uiState = UiState.Loading,
-                    onCategoryClick = {}
+                    onGlassClick = {}
                 )
             }
         }
@@ -47,18 +46,18 @@ class CategoriesScreenListTest {
 
     @Test
     fun dataList_whenScreenIsSuccess_exists() {
-        val testCategoryName = "test_category_name1"
+        val testGlassName = "test_glass_name1"
         composeTestRule.setContent {
             Box {
-                CategoriesListScreen(
-                    uiState = UiState.Success(listOf(Category(testCategoryName))),
-                    onCategoryClick = {}
+                GlassesListScreen(
+                    uiState = UiState.Success(listOf(Glass(testGlassName))),
+                    onGlassClick = {}
                 )
             }
         }
 
         composeTestRule
-            .onNodeWithText(testCategoryName)
+            .onNodeWithText(testGlassName)
             .assertExists()
     }
 
@@ -67,9 +66,9 @@ class CategoriesScreenListTest {
         val errorResId = com.alexmprog.thecocktails.core.ui.R.string.core_ui_unknown_error
         composeTestRule.setContent {
             Box {
-                CategoriesListScreen(
+                GlassesListScreen(
                     uiState = UiState.Error(ErrorText.StringResource(errorResId)),
-                    onCategoryClick = {}
+                    onGlassClick = {}
                 )
             }
         }
@@ -81,20 +80,20 @@ class CategoriesScreenListTest {
 
     @Test
     fun callback_whenDataIsClicked_exists() {
-        var clickedItem: Category? = null
-        val testCategoryName = "test_category_name1"
+        var clickedItem: Glass? = null
+        val testGlassName = "test_glass_name1"
         composeTestRule.setContent {
             Box {
-                CategoriesListScreen(
-                    uiState = UiState.Success(listOf(Category(testCategoryName))),
-                    onCategoryClick = { clickedItem = it }
+                GlassesListScreen(
+                    uiState = UiState.Success(listOf(Glass(testGlassName))),
+                    onGlassClick = { clickedItem = it }
                 )
             }
         }
         composeTestRule
-            .onNodeWithText(testCategoryName)
+            .onNodeWithText(testGlassName)
             .performClick()
-        assertEquals(clickedItem?.name, testCategoryName)
+        assertEquals(clickedItem?.name, testGlassName)
     }
 
 }

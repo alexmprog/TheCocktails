@@ -12,7 +12,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.alexmprog.thecocktails.core.testing.AppTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -50,7 +50,20 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
     implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.compose.ui.test)
+
     debugImplementation(libs.androidx.compose.ui.testManifest)
+
+    kspTest(libs.hilt.compiler)
+
+    testImplementation(projects.core.dataTest)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(kotlin("test"))
+
+    androidTestImplementation(kotlin("test"))
+    androidTestImplementation(projects.core.testing)
+    androidTestImplementation(projects.core.dataTest)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.compose.navigation.testing)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.hilt.android.testing)
 }

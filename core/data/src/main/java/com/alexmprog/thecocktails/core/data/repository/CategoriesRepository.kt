@@ -47,6 +47,5 @@ internal class OfflineFirstCategoriesRepository @Inject constructor(
         .flowOn(ioDispatcher)
 }
 
-internal fun CategoryDTO.toEntity(): CategoryEntity = CategoryEntity(name)
-
-internal fun CategoryEntity.toModel(): Category = Category(name)
+fun CategoryDTO.toEntity(): CategoryEntity = CategoryEntity(name)
+fun CategoryEntity.toModel(): Category = Category(name)

@@ -72,6 +72,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 compose-hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "composeHiltNav" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+compose-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

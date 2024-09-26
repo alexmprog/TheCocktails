@@ -56,9 +56,8 @@ internal class OnlineCocktailsRepository @Inject constructor(
 
 }
 
-internal fun CocktailDTO.toModel(): Cocktail = Cocktail(id, name, image)
-
-internal fun CocktailDetailsDTO.toModel(): CocktailDetails {
+fun CocktailDTO.toModel(): Cocktail = Cocktail(id, name, image)
+fun CocktailDetailsDTO.toModel(): CocktailDetails {
     val ingredients = mutableListOf<String>()
     val addMeasuredIngredient: (String?, String?) -> Unit = { ingredient, measure ->
         val value = if (!ingredient.isNullOrEmpty()) {

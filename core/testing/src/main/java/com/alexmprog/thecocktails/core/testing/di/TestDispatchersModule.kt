@@ -9,6 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import javax.inject.Singleton
 
 @Module
 @TestInstallIn(
@@ -16,6 +18,11 @@ import kotlinx.coroutines.test.TestDispatcher
     replaces = [DispatchersModule::class],
 )
 internal object TestDispatchersModule {
+
+    @Provides
+    @Singleton
+    fun providesTestDispatcher(): TestDispatcher = UnconfinedTestDispatcher()
+
     @Provides
     @Dispatcher(CommonDispatchers.IO)
     fun providesIODispatcher(testDispatcher: TestDispatcher): CoroutineDispatcher = testDispatcher
