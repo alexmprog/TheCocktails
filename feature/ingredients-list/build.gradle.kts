@@ -18,3 +18,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
 }
+
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    metricsDestination = layout.buildDirectory.dir("compose_compiler")
+}

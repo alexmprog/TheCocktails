@@ -23,3 +23,8 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.testManifest)
     androidTestImplementation(libs.androidx.lifecycle.runtime.testing)
 }
+
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    metricsDestination = layout.buildDirectory.dir("compose_compiler")
+}
