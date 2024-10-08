@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.core.model
+package com.alexmprog.thecocktails.core.common.model
 
 // extends Resource with Loading state on demand
 sealed class Resource<T> {

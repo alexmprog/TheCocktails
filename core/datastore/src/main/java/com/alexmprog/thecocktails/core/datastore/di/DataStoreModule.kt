@@ -3,10 +3,9 @@ package com.alexmprog.thecocktails.core.datastore.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
-import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import com.alexmprog.thecocktails.core.common.di.ApplicationScope
 import com.alexmprog.thecocktails.core.datastore.model.UserPrefs
 import com.alexmprog.thecocktails.core.datastore.model.UserPrefsSerializer

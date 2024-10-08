@@ -1,8 +1,8 @@
 package com.alexmprog.thecocktails.core.network.demo
 
 import JvmUnitTestDemoAssetManager
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import com.alexmprog.thecocktails.core.network.NetworkDataSource
 import com.alexmprog.thecocktails.core.network.model.CategoriesResponse
 import com.alexmprog.thecocktails.core.network.model.CategoryDTO

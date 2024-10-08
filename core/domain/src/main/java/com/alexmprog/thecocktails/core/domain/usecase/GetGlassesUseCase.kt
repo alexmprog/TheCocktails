@@ -1,8 +1,8 @@
-package com.alexmprog.thecocktails.core.domain
+package com.alexmprog.thecocktails.core.domain.usecase
 
-import com.alexmprog.thecocktails.core.data.repository.GlassesRepository
-import com.alexmprog.thecocktails.core.model.Glass
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.model.Glass
+import com.alexmprog.thecocktails.core.common.model.Resource
+import com.alexmprog.thecocktails.core.domain.repository.GlassesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

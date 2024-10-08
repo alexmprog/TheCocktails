@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.core.common
+package com.alexmprog.thecocktails.core.common.dispatchers
 
 import javax.inject.Qualifier
 import kotlin.annotation.AnnotationRetention.RUNTIME

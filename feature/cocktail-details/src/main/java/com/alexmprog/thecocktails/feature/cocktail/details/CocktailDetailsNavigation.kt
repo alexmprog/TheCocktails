@@ -8,7 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.alexmprog.thecocktails.core.model.Cocktail
+import com.alexmprog.thecocktails.core.domain.model.Cocktail
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute
 import kotlinx.serialization.Serializable
 

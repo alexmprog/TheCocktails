@@ -1,7 +1,7 @@
-package com.alexmprog.thecocktails.core.domain
+package com.alexmprog.thecocktails.core.domain.usecase
 
-import com.alexmprog.thecocktails.core.data.repository.UserSettingsRepository
-import com.alexmprog.thecocktails.core.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.repository.UserSettingsRepository
 import javax.inject.Inject
 
 class SaveUserSettingsUseCase @Inject constructor(

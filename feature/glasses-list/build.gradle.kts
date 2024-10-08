@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
+    implementation(projects.core.common)
     implementation(projects.core.domain)
     implementation(projects.core.ui)
     implementation(libs.androidx.lifecycle.runtime.compose)

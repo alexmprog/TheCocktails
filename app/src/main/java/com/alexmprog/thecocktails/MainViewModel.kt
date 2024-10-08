@@ -2,8 +2,8 @@ package com.alexmprog.thecocktails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alexmprog.thecocktails.core.domain.GetUserSettingsUseCase
-import com.alexmprog.thecocktails.core.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.usecase.GetUserSettingsUseCase
+import com.alexmprog.thecocktails.core.domain.model.UserSettings
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

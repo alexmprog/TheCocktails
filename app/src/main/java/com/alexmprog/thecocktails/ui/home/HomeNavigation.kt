@@ -4,9 +4,9 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.model.Glass
-import com.alexmprog.thecocktails.core.model.Ingredient
+import com.alexmprog.thecocktails.core.domain.model.Category
+import com.alexmprog.thecocktails.core.domain.model.Glass
+import com.alexmprog.thecocktails.core.domain.model.Ingredient
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute
 import kotlinx.serialization.Serializable
 

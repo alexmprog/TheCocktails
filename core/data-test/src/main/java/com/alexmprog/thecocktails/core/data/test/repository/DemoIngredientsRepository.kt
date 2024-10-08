@@ -1,12 +1,12 @@
 package com.alexmprog.thecocktails.core.data.test.repository
 
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
-import com.alexmprog.thecocktails.core.data.repository.IngredientsRepository
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import com.alexmprog.thecocktails.core.data.repository.toEntity
 import com.alexmprog.thecocktails.core.data.repository.toModel
-import com.alexmprog.thecocktails.core.model.Ingredient
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.model.Ingredient
+import com.alexmprog.thecocktails.core.common.model.Resource
+import com.alexmprog.thecocktails.core.domain.repository.IngredientsRepository
 import com.alexmprog.thecocktails.core.network.demo.DemoNetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

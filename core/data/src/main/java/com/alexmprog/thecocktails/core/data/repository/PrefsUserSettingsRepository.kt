@@ -1,23 +1,17 @@
 package com.alexmprog.thecocktails.core.data.repository
 
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import com.alexmprog.thecocktails.core.datastore.UserPrefsDataSource
 import com.alexmprog.thecocktails.core.datastore.model.UserPrefs
-import com.alexmprog.thecocktails.core.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.repository.UserSettingsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
-interface UserSettingsRepository {
-
-    fun getUserSettings(): Flow<UserSettings>
-
-    suspend fun saveUserSettings(userSettings: UserSettings)
-}
 
 internal class PrefsUserSettingsRepository @Inject constructor(
     private val userPrefsDataSource: UserPrefsDataSource,
@@ -34,8 +28,6 @@ internal class PrefsUserSettingsRepository @Inject constructor(
         }
 }
 
-private fun UserPrefs.toModel(): UserSettings =
-    UserSettings(useDynamicColors = useDynamicColors)
+private fun UserPrefs.toModel(): UserSettings = UserSettings(useDynamicColors = useDynamicColors)
 
-private fun UserSettings.toPrefs(): UserPrefs =
-    UserPrefs(useDynamicColors = useDynamicColors)
+private fun UserSettings.toPrefs(): UserPrefs = UserPrefs(useDynamicColors = useDynamicColors)

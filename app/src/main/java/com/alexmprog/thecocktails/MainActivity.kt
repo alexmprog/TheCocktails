@@ -12,8 +12,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.alexmprog.thecocktails.core.domain.GetUserSettingsUseCase
-import com.alexmprog.thecocktails.core.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.usecase.GetUserSettingsUseCase
+import com.alexmprog.thecocktails.core.domain.model.UserSettings
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import com.alexmprog.thecocktails.core.ui.theme.CocktailsTheme
 import com.alexmprog.thecocktails.ui.CocktailsApp

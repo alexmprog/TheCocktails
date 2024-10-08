@@ -8,8 +8,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
-    implementation(projects.core.data)
+    implementation(projects.core.common)
     implementation(libs.javax.inject)
     implementation(libs.kotlinx.coroutines.core)
     testImplementation(libs.junit)

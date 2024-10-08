@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.alexmprog.thecocktails.core.model.Category
+import com.alexmprog.thecocktails.core.domain.model.Category
 import com.alexmprog.thecocktails.core.ui.components.ErrorView
 import com.alexmprog.thecocktails.core.ui.components.LoadingView
 import com.alexmprog.thecocktails.core.ui.components.OutlinedTextItem

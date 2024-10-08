@@ -1,9 +1,9 @@
 package com.alexmprog.thecocktails.feature.glasses.list
 
-import com.alexmprog.thecocktails.core.domain.GetGlassesUseCase
-import com.alexmprog.thecocktails.core.model.ErrorType
-import com.alexmprog.thecocktails.core.model.Glass
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.usecase.GetGlassesUseCase
+import com.alexmprog.thecocktails.core.common.model.ErrorType
+import com.alexmprog.thecocktails.core.domain.model.Glass
+import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.testing.repository.TestGlassesRepository
 import com.alexmprog.thecocktails.core.testing.rules.TestDispatcherRule
 import com.alexmprog.thecocktails.core.ui.state.UiState

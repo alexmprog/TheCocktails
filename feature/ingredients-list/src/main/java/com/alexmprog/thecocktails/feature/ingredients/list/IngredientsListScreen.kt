@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.alexmprog.thecocktails.core.model.Ingredient
+import com.alexmprog.thecocktails.core.domain.model.Ingredient
 import com.alexmprog.thecocktails.core.ui.components.ErrorView
 import com.alexmprog.thecocktails.core.ui.components.LoadingView
 import com.alexmprog.thecocktails.core.ui.components.OutlinedTextItem

@@ -5,7 +5,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.alexmprog.thecocktails.core.model.UserSettings
+import com.alexmprog.thecocktails.core.domain.model.UserSettings
 
 @Stable
 class CocktailsAppState(

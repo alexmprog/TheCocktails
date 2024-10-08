@@ -1,10 +1,10 @@
 package com.alexmprog.thecocktails.feature.categories.list
 
 import com.alexmprog.thecocktails.categories.list.CategoriesListViewModel
-import com.alexmprog.thecocktails.core.domain.GetCategoriesUseCase
-import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.model.ErrorType
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.usecase.GetCategoriesUseCase
+import com.alexmprog.thecocktails.core.domain.model.Category
+import com.alexmprog.thecocktails.core.common.model.ErrorType
+import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.testing.repository.TestCategoriesRepository
 import com.alexmprog.thecocktails.core.testing.rules.TestDispatcherRule
 import com.alexmprog.thecocktails.core.ui.state.UiState

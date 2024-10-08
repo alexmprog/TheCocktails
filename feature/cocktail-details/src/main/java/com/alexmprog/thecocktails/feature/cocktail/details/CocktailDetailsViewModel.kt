@@ -4,10 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.alexmprog.thecocktails.core.domain.GetCocktailDetailsUseCase
-import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.model.CocktailDetails
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.usecase.GetCocktailDetailsUseCase
+import com.alexmprog.thecocktails.core.domain.model.Cocktail
+import com.alexmprog.thecocktails.core.domain.model.CocktailDetails
+import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

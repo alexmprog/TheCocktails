@@ -1,12 +1,13 @@
 package com.alexmprog.thecocktails.core.data.repository
 
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
-import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.model.CocktailDetails
-import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
-import com.alexmprog.thecocktails.core.model.ErrorType
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
+import com.alexmprog.thecocktails.core.domain.model.Cocktail
+import com.alexmprog.thecocktails.core.domain.model.CocktailDetails
+import com.alexmprog.thecocktails.core.domain.model.CocktailsSearchSource
+import com.alexmprog.thecocktails.core.common.model.ErrorType
+import com.alexmprog.thecocktails.core.common.model.Resource
+import com.alexmprog.thecocktails.core.domain.repository.CocktailsRepository
 import com.alexmprog.thecocktails.core.network.NetworkDataSource
 import com.alexmprog.thecocktails.core.network.model.CocktailDTO
 import com.alexmprog.thecocktails.core.network.model.CocktailDetailsDTO
@@ -17,16 +18,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-
-interface CocktailsRepository {
-
-    fun getCocktailsBySource(
-        id: String,
-        source: CocktailsSearchSource
-    ): Flow<Resource<List<Cocktail>>>
-
-    fun getCocktailDetails(id: Int): Flow<Resource<CocktailDetails>>
-}
 
 internal class OnlineCocktailsRepository @Inject constructor(
     private val networkDataSource: NetworkDataSource,
@@ -80,5 +71,11 @@ fun CocktailDetailsDTO.toModel(): CocktailDetails {
     addMeasuredIngredient(ingredient13, measure13)
     addMeasuredIngredient(ingredient14, measure14)
     addMeasuredIngredient(ingredient15, measure15)
-    return CocktailDetails(id, category, glass, description, ingredients)
+    return CocktailDetails(
+        id,
+        category,
+        glass,
+        description,
+        ingredients
+    )
 }

@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.core.model
+package com.alexmprog.thecocktails.core.domain.model
 
 data class Cocktail(
     val id: Int,

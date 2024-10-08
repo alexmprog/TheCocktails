@@ -2,9 +2,9 @@ package com.alexmprog.thecocktails.feature.ingredients.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alexmprog.thecocktails.core.domain.GetIngredientsUseCase
-import com.alexmprog.thecocktails.core.model.Ingredient
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.usecase.GetIngredientsUseCase
+import com.alexmprog.thecocktails.core.domain.model.Ingredient
+import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

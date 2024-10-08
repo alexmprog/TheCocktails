@@ -1,10 +1,10 @@
 package com.alexmprog.thecocktails.core.testing.repository
 
-import com.alexmprog.thecocktails.core.data.repository.CocktailsRepository
-import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.model.CocktailDetails
-import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.model.Cocktail
+import com.alexmprog.thecocktails.core.domain.model.CocktailDetails
+import com.alexmprog.thecocktails.core.domain.model.CocktailsSearchSource
+import com.alexmprog.thecocktails.core.common.model.Resource
+import com.alexmprog.thecocktails.core.domain.repository.CocktailsRepository
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

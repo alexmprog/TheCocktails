@@ -35,14 +35,15 @@ It simply loads data from API and stores it in persistence storage (i.e. SQLite 
 
 graph TB
   subgraph :core
-    :core:model["model"]
+    :core:common["common"]
     :core:domain["domain"]
     :core:ui["ui"]
+    :core:testing["testing"]
+    :core:data-test["data-test"]
     :core:data["data"]
-    :core:network["network"]
     :core:database["database"]
     :core:datastore["datastore"]
-    :core:common["common"]
+    :core:network["network"]
   end
   subgraph :feature
     :feature:settings["settings"]
@@ -52,13 +53,16 @@ graph TB
     :feature:cocktail-details["cocktail-details"]
     :feature:ingredients-list["ingredients-list"]
   end
-  :feature:settings --> :core:model
+  :feature:settings --> :core:common
   :feature:settings --> :core:domain
   :feature:settings --> :core:ui
-  :feature:glasses-list --> :core:model
+  :feature:glasses-list --> :core:testing
+  :feature:glasses-list --> :core:common
   :feature:glasses-list --> :core:domain
   :feature:glasses-list --> :core:ui
-  :app --> :core:model
+  :app --> :core:testing
+  :app --> :core:data-test
+  :app --> :core:data
   :app --> :core:domain
   :app --> :core:ui
   :app --> :feature:categories-list
@@ -67,25 +71,32 @@ graph TB
   :app --> :feature:glasses-list
   :app --> :feature:ingredients-list
   :app --> :feature:settings
-  :core:data --> :core:model
-  :core:data --> :core:network
+  :core:testing --> :core:common
+  :core:testing --> :core:domain
   :core:data --> :core:database
   :core:data --> :core:datastore
+  :core:data --> :core:domain
   :core:data --> :core:common
+  :core:data --> :core:network
   :core:network --> :core:common
-  :feature:categories-list --> :core:model
+  :feature:categories-list --> :core:testing
+  :feature:categories-list --> :core:common
   :feature:categories-list --> :core:domain
   :feature:categories-list --> :core:ui
-  :feature:cocktail-details --> :core:model
+  :feature:cocktail-details --> :core:common
   :feature:cocktail-details --> :core:domain
   :feature:cocktail-details --> :core:ui
-  :feature:cocktails-list --> :core:model
+  :feature:cocktails-list --> :core:common
   :feature:cocktails-list --> :core:domain
   :feature:cocktails-list --> :core:ui
-  :core:domain --> :core:model
-  :core:domain --> :core:data
+  :core:domain --> :core:common
   :core:datastore --> :core:common
-  :feature:ingredients-list --> :core:model
+  :core:data-test --> :core:common
+  :core:data-test --> :core:network
+  :core:data-test --> :core:database
+  :core:data-test --> :core:data
+  :core:data-test --> :core:domain
+  :feature:ingredients-list --> :core:common
   :feature:ingredients-list --> :core:domain
   :feature:ingredients-list --> :core:ui
 
@@ -93,23 +104,23 @@ classDef android-library fill:#3BD482,stroke:#fff,stroke-width:2px,color:#fff;
 classDef kotlin-jvm fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
 classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
 class :feature:settings android-library
-class :core:model kotlin-jvm
+class :core:common kotlin-jvm
 class :core:domain android-library
 class :core:ui android-library
 class :feature:glasses-list android-library
+class :core:testing android-library
 class :app android-application
+class :core:data-test android-library
+class :core:data android-library
 class :feature:categories-list android-library
 class :feature:cocktails-list android-library
 class :feature:cocktail-details android-library
 class :feature:ingredients-list android-library
-class :core:data android-library
-class :core:network android-library
 class :core:database android-library
 class :core:datastore android-library
-class :core:common kotlin-jvm
+class :core:network android-library
 
 ```
-
 ## Architecture
 This repository uses recommended Android [App architecture](https://developer.android.com/topic/architecture).
 ![Image of Clean Architecture](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)

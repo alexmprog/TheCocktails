@@ -9,7 +9,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.alexmprog.thecocktails.categories.list.CategoriesListScreen
-import com.alexmprog.thecocktails.core.model.Category
+import com.alexmprog.thecocktails.core.domain.model.Category
 import com.alexmprog.thecocktails.core.testing.rules.GrantPostNotificationsPermissionRule
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState

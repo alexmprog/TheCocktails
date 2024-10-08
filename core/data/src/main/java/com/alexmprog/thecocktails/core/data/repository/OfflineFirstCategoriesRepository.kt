@@ -1,12 +1,13 @@
 package com.alexmprog.thecocktails.core.data.repository
 
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import com.alexmprog.thecocktails.core.database.dao.CategoryDao
 import com.alexmprog.thecocktails.core.database.model.CategoryEntity
-import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.model.ErrorType
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.model.Category
+import com.alexmprog.thecocktails.core.common.model.ErrorType
+import com.alexmprog.thecocktails.core.common.model.Resource
+import com.alexmprog.thecocktails.core.domain.repository.CategoriesRepository
 import com.alexmprog.thecocktails.core.network.NetworkDataSource
 import com.alexmprog.thecocktails.core.network.model.CategoryDTO
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,11 +19,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-
-interface CategoriesRepository {
-
-    fun getCategories(): Flow<Resource<List<Category>>>
-}
 
 internal class OfflineFirstCategoriesRepository @Inject constructor(
     private val categoryDao: CategoryDao,

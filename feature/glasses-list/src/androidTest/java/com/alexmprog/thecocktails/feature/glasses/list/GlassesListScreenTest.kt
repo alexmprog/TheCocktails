@@ -8,7 +8,7 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.alexmprog.thecocktails.core.model.Glass
+import com.alexmprog.thecocktails.core.domain.model.Glass
 import com.alexmprog.thecocktails.core.testing.rules.GrantPostNotificationsPermissionRule
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState

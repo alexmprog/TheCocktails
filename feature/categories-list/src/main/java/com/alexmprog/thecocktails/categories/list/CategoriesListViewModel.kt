@@ -2,9 +2,8 @@ package com.alexmprog.thecocktails.categories.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alexmprog.thecocktails.core.domain.GetCategoriesUseCase
-import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.model.Resource
+import com.alexmprog.thecocktails.core.domain.usecase.GetCategoriesUseCase
+import com.alexmprog.thecocktails.core.domain.model.Category
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +21,8 @@ internal class CategoriesListViewModel @Inject constructor(
     val uiState: StateFlow<UiState<List<Category>>> = getCategoriesUseCase()
         .map {
             when (it) {
-                is Resource.Success -> UiState.Success(it.data)
-                is Resource.Error -> UiState.Error(
+                is com.alexmprog.thecocktails.core.common.model.Resource.Success -> UiState.Success(it.data)
+                is com.alexmprog.thecocktails.core.common.model.Resource.Error -> UiState.Error(
                     ErrorText.StringResource(com.alexmprog.thecocktails.core.ui.R.string.core_ui_network_error)
                 )
             }

@@ -1,6 +1,6 @@
 package com.alexmprog.thecocktails.feature.glasses.list
 
-import com.alexmprog.thecocktails.core.model.Glass
+import com.alexmprog.thecocktails.core.domain.model.Glass
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute

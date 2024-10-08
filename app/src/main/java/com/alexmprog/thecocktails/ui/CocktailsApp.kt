@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.alexmprog.thecocktails.core.model.CocktailsSearchSource
+import com.alexmprog.thecocktails.core.domain.model.CocktailsSearchSource
 import com.alexmprog.thecocktails.feature.cocktail.details.cocktailDetailsScreenRoute
 import com.alexmprog.thecocktails.feature.cocktail.details.navigateToCocktailDetails
 import com.alexmprog.thecocktails.ui.home.HomeScreenRoute

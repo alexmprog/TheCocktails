@@ -1,15 +1,15 @@
 package com.alexmprog.thecocktails.core.data.di
 
-import com.alexmprog.thecocktails.core.data.repository.CategoriesRepository
-import com.alexmprog.thecocktails.core.data.repository.CocktailsRepository
-import com.alexmprog.thecocktails.core.data.repository.GlassesRepository
-import com.alexmprog.thecocktails.core.data.repository.IngredientsRepository
 import com.alexmprog.thecocktails.core.data.repository.OfflineFirstCategoriesRepository
 import com.alexmprog.thecocktails.core.data.repository.OnlineCocktailsRepository
 import com.alexmprog.thecocktails.core.data.repository.OfflineFirstGlassesRepository
 import com.alexmprog.thecocktails.core.data.repository.OfflineFirstIngredientsRepository
 import com.alexmprog.thecocktails.core.data.repository.PrefsUserSettingsRepository
-import com.alexmprog.thecocktails.core.data.repository.UserSettingsRepository
+import com.alexmprog.thecocktails.core.domain.repository.CategoriesRepository
+import com.alexmprog.thecocktails.core.domain.repository.CocktailsRepository
+import com.alexmprog.thecocktails.core.domain.repository.GlassesRepository
+import com.alexmprog.thecocktails.core.domain.repository.IngredientsRepository
+import com.alexmprog.thecocktails.core.domain.repository.UserSettingsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

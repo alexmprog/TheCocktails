@@ -47,9 +47,9 @@ import androidx.navigation.compose.rememberNavController
 import com.alexmprog.thecocktails.R
 import com.alexmprog.thecocktails.categories.list.CategoriesListScreenRoute
 import com.alexmprog.thecocktails.categories.list.categoriesScreenRoute
-import com.alexmprog.thecocktails.core.model.Category
-import com.alexmprog.thecocktails.core.model.Glass
-import com.alexmprog.thecocktails.core.model.Ingredient
+import com.alexmprog.thecocktails.core.domain.model.Category
+import com.alexmprog.thecocktails.core.domain.model.Glass
+import com.alexmprog.thecocktails.core.domain.model.Ingredient
 import com.alexmprog.thecocktails.core.ui.navigation.ScreenRoute
 import com.alexmprog.thecocktails.feature.glasses.list.GlassesListScreenRoute
 import com.alexmprog.thecocktails.feature.glasses.list.glassesScreenRoute

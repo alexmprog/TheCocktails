@@ -31,8 +31,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.alexmprog.thecocktails.core.model.Cocktail
-import com.alexmprog.thecocktails.core.model.CocktailDetails
+import com.alexmprog.thecocktails.core.domain.model.Cocktail
+import com.alexmprog.thecocktails.core.domain.model.CocktailDetails
 import com.alexmprog.thecocktails.core.ui.components.ErrorView
 import com.alexmprog.thecocktails.core.ui.components.LoadingView
 import com.alexmprog.thecocktails.core.ui.state.UiState

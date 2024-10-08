@@ -1,7 +1,7 @@
 package com.alexmprog.thecocktails.core.common.di
 
-import com.alexmprog.thecocktails.core.common.CommonDispatchers
-import com.alexmprog.thecocktails.core.common.Dispatcher
+import com.alexmprog.thecocktails.core.common.dispatchers.CommonDispatchers
+import com.alexmprog.thecocktails.core.common.dispatchers.Dispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
