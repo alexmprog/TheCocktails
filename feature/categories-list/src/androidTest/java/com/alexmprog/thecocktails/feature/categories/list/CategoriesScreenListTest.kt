@@ -31,7 +31,8 @@ class CategoriesScreenListTest {
             Box {
                 CategoriesListScreen(
                     uiState = UiState.Loading,
-                    onCategoryClick = {}
+                    onCategoryClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -52,7 +53,8 @@ class CategoriesScreenListTest {
             Box {
                 CategoriesListScreen(
                     uiState = UiState.Success(listOf(Category(testCategoryName))),
-                    onCategoryClick = {}
+                    onCategoryClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -69,7 +71,8 @@ class CategoriesScreenListTest {
             Box {
                 CategoriesListScreen(
                     uiState = UiState.Error(ErrorText.StringResource(errorResId)),
-                    onCategoryClick = {}
+                    onCategoryClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -87,7 +90,8 @@ class CategoriesScreenListTest {
             Box {
                 CategoriesListScreen(
                     uiState = UiState.Success(listOf(Category(testCategoryName))),
-                    onCategoryClick = { clickedItem = it }
+                    onCategoryClick = { clickedItem = it },
+                    onRefreshClick = {}
                 )
             }
         }

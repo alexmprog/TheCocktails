@@ -45,7 +45,8 @@ internal fun CocktailDetailsScreen(
     sharedTransitionScope: SharedTransitionScope,
     animatedVisibilityScope: AnimatedVisibilityScope,
     modifier: Modifier = Modifier,
-    navigateUp: () -> Unit
+    navigateUp: () -> Unit,
+    onRefreshClick: () -> Unit
 ) {
     with(sharedTransitionScope) {
         Scaffold(modifier,
@@ -97,7 +98,7 @@ internal fun CocktailDetailsScreen(
 
                 when (detailsState) {
                     is UiState.Loading -> LoadingView()
-                    is UiState.Error -> ErrorView(detailsState.error, {})
+                    is UiState.Error -> ErrorView(detailsState.error, onRefreshClick)
                     is UiState.Success -> CocktailDetails(detailsState.data)
                 }
             }

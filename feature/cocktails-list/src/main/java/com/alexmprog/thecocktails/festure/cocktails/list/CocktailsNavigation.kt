@@ -30,6 +30,7 @@ fun NavGraphBuilder.cocktailsScreenRoute(
             sharedTransitionScope,
             this@composable,
             onCocktailClick = onCocktailClick,
+            onRefreshClick = viewModel::refresh,
             navigateUp = navigateUp
         )
     }

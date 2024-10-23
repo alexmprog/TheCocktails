@@ -8,9 +8,13 @@ import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -19,7 +23,9 @@ internal class IngredientsListViewModel @Inject constructor(
     getIngredientsUseCase: GetIngredientsUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<UiState<List<Ingredient>>> = getIngredientsUseCase()
+    private val refreshAction = Channel<Boolean>(CONFLATED)
+    val uiState: StateFlow<UiState<List<Ingredient>>> = refreshAction.receiveAsFlow()
+        .flatMapLatest { getIngredientsUseCase() }
         .map {
             when (it) {
                 is Resource.Success -> UiState.Success(it.data)
@@ -33,4 +39,12 @@ internal class IngredientsListViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = UiState.Loading,
         )
+
+    init {
+        refresh()
+    }
+
+    fun refresh() {
+        refreshAction.trySend(true)
+    }
 }

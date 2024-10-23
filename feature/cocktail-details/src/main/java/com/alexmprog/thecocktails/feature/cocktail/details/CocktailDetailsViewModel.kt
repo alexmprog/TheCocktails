@@ -11,10 +11,14 @@ import com.alexmprog.thecocktails.core.common.model.Resource
 import com.alexmprog.thecocktails.core.ui.state.ErrorText
 import com.alexmprog.thecocktails.core.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -29,8 +33,9 @@ internal class CocktailDetailsViewModel @Inject constructor(
     val cocktailState: StateFlow<Cocktail> =
         MutableStateFlow(Cocktail(route.id, route.name, route.image))
 
-    val detailsState: StateFlow<UiState<CocktailDetails>> =
-        getCocktailDetailsUseCase(route.id)
+    private val refreshAction = Channel<Boolean>(CONFLATED)
+    val detailsState: StateFlow<UiState<CocktailDetails>> = refreshAction.receiveAsFlow()
+        .flatMapLatest { getCocktailDetailsUseCase(route.id) }
             .map {
                 when (it) {
                     is Resource.Success -> UiState.Success(it.data)
@@ -44,4 +49,12 @@ internal class CocktailDetailsViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = UiState.Loading,
             )
+
+    init {
+        refresh()
+    }
+
+    fun refresh() {
+        refreshAction.trySend(true)
+    }
 }

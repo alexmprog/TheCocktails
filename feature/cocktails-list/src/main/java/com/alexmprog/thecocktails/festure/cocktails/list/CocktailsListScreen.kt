@@ -48,6 +48,7 @@ internal fun CocktailsListScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     modifier: Modifier = Modifier,
     onCocktailClick: (Cocktail) -> Unit,
+    onRefreshClick: () -> Unit,
     navigateUp: () -> Unit
 ) {
     Scaffold(topBar = {
@@ -70,7 +71,7 @@ internal fun CocktailsListScreen(
         ) {
             when (uiState) {
                 is UiState.Loading -> LoadingView()
-                is UiState.Error -> ErrorView(uiState.error, {})
+                is UiState.Error -> ErrorView(uiState.error, onRefreshClick)
                 is UiState.Success -> CocktailsList(
                     uiState.data,
                     sharedTransitionScope,

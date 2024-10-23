@@ -27,19 +27,20 @@ internal fun CategoriesListScreen(
     onCategoryClick: (Category) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    CategoriesListScreen(uiState, modifier, onCategoryClick)
+    CategoriesListScreen(uiState, modifier, onCategoryClick, viewModel::refresh)
 }
 
 @Composable
 internal fun CategoriesListScreen(
     uiState: UiState<List<Category>>,
     modifier: Modifier = Modifier,
-    onCategoryClick: (Category) -> Unit
+    onCategoryClick: (Category) -> Unit,
+    onRefreshClick: () -> Unit
 ) {
     Surface(modifier) {
         when (uiState) {
             is UiState.Loading -> LoadingView()
-            is UiState.Error -> ErrorView(uiState.error, {})
+            is UiState.Error -> ErrorView(uiState.error, onRefreshClick)
             is UiState.Success -> CategoriesList(uiState.data, onCategoryClick)
         }
     }
@@ -67,7 +68,7 @@ internal fun CategoriesList(
 private fun CategoriesListScreenPreview() {
     CategoriesListScreen(
         UiState.Success(listOf(Category("Cocktail"), Category("Drink"), Category("Coffee"))),
-        Modifier.fillMaxWidth(), {})
+        Modifier.fillMaxWidth(), {},{})
 }
 
 

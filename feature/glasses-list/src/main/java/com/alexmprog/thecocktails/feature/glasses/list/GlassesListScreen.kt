@@ -25,19 +25,20 @@ internal fun GlassesListScreen(
     onGlassClick: (Glass) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    GlassesListScreen(uiState, modifier, onGlassClick = onGlassClick)
+    GlassesListScreen(uiState, modifier, onGlassClick, viewModel::refresh)
 }
 
 @Composable
 internal fun GlassesListScreen(
     uiState: UiState<List<Glass>>,
     modifier: Modifier = Modifier,
-    onGlassClick: (Glass) -> Unit
+    onGlassClick: (Glass) -> Unit,
+    onRefreshClick: () -> Unit
 ) {
     Surface(modifier) {
         when (uiState) {
             is UiState.Loading -> LoadingView()
-            is UiState.Error -> ErrorView(uiState.error, {})
+            is UiState.Error -> ErrorView(uiState.error, onRefreshClick)
             is UiState.Success -> GlassesList(uiState.data, onGlassClick)
         }
     }

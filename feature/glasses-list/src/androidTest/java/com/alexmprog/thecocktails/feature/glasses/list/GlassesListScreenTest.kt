@@ -30,7 +30,8 @@ class GlassesListScreenTest {
             Box {
                 GlassesListScreen(
                     uiState = UiState.Loading,
-                    onGlassClick = {}
+                    onGlassClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -51,7 +52,8 @@ class GlassesListScreenTest {
             Box {
                 GlassesListScreen(
                     uiState = UiState.Success(listOf(Glass(testGlassName))),
-                    onGlassClick = {}
+                    onGlassClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -68,7 +70,8 @@ class GlassesListScreenTest {
             Box {
                 GlassesListScreen(
                     uiState = UiState.Error(ErrorText.StringResource(errorResId)),
-                    onGlassClick = {}
+                    onGlassClick = {},
+                    onRefreshClick = {}
                 )
             }
         }
@@ -86,7 +89,8 @@ class GlassesListScreenTest {
             Box {
                 GlassesListScreen(
                     uiState = UiState.Success(listOf(Glass(testGlassName))),
-                    onGlassClick = { clickedItem = it }
+                    onGlassClick = { clickedItem = it },
+                    onRefreshClick = {}
                 )
             }
         }

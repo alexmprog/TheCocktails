@@ -25,19 +25,20 @@ internal fun IngredientsListScreen(
     onIngredientClick: (Ingredient) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    IngredientsListScreen(uiState, modifier, onIngredientClick)
+    IngredientsListScreen(uiState, modifier, onIngredientClick, viewModel::refresh)
 }
 
 @Composable
 internal fun IngredientsListScreen(
     uiState: UiState<List<Ingredient>>,
     modifier: Modifier = Modifier,
-    onIngredientClick: (Ingredient) -> Unit
+    onIngredientClick: (Ingredient) -> Unit,
+    onRefreshClick: () -> Unit
 ) {
     Surface(modifier) {
         when (uiState) {
             is UiState.Loading -> LoadingView()
-            is UiState.Error -> ErrorView(uiState.error, {})
+            is UiState.Error -> ErrorView(uiState.error, onRefreshClick)
             is UiState.Success -> IngredientsList(uiState.data, onIngredientClick)
         }
     }
