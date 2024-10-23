@@ -1,4 +1,4 @@
-package com.alexmprog.thecocktails.core.common.model
+package com.alexmprog.thecocktails.core.common.flow
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
