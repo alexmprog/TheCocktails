@@ -52,6 +52,7 @@ graph TB
     :feature:cocktails-list["cocktails-list"]
     :feature:cocktail-details["cocktail-details"]
     :feature:ingredients-list["ingredients-list"]
+    :feature:home["home"]
   end
   :feature:settings --> :core:common
   :feature:settings --> :core:domain
@@ -70,6 +71,7 @@ graph TB
   :app --> :feature:cocktail-details
   :app --> :feature:glasses-list
   :app --> :feature:ingredients-list
+  :app --> :feature:home
   :app --> :feature:settings
   :core:testing --> :core:common
   :core:testing --> :core:domain
@@ -86,6 +88,10 @@ graph TB
   :feature:cocktail-details --> :core:common
   :feature:cocktail-details --> :core:domain
   :feature:cocktail-details --> :core:ui
+  :feature:home --> :core:testing
+  :feature:home --> :core:common
+  :feature:home --> :core:domain
+  :feature:home --> :core:ui
   :feature:cocktails-list --> :core:common
   :feature:cocktails-list --> :core:domain
   :feature:cocktails-list --> :core:ui
@@ -116,6 +122,7 @@ class :feature:categories-list android-library
 class :feature:cocktails-list android-library
 class :feature:cocktail-details android-library
 class :feature:ingredients-list android-library
+class :feature:home android-library
 class :core:database android-library
 class :core:datastore android-library
 class :core:network android-library

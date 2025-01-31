@@ -38,6 +38,7 @@ dependencies {
     implementation(projects.feature.cocktailDetails)
     implementation(projects.feature.glassesList)
     implementation(projects.feature.ingredientsList)
+    implementation(projects.feature.home)
     implementation(projects.feature.settings)
     implementation(libs.androidx.core.ktx)
     implementation(libs.coil.kt)

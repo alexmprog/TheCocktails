@@ -8,15 +8,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import com.alexmprog.thecocktails.categories.list.CategoriesListScreenRoute
+import com.alexmprog.thecocktails.categories.list.categoriesScreenRoute
 import com.alexmprog.thecocktails.core.domain.model.CocktailsSearchSource
 import com.alexmprog.thecocktails.feature.cocktail.details.cocktailDetailsScreenRoute
 import com.alexmprog.thecocktails.feature.cocktail.details.navigateToCocktailDetails
-import com.alexmprog.thecocktails.ui.home.HomeScreenRoute
-import com.alexmprog.thecocktails.ui.home.homeScreenRoute
+import com.alexmprog.thecocktails.feature.glasses.list.glassesScreenRoute
+import com.alexmprog.thecocktails.feature.ingredients.list.IngredientsListScreenRoute
+import com.alexmprog.thecocktails.feature.ingredients.list.ingredientsScreenRoute
 import com.alexmprog.thecocktails.feature.settings.navigateToSettings
 import com.alexmprog.thecocktails.feature.settings.settingsScreenRoute
 import com.alexmprog.thecocktails.festure.cocktails.list.cocktailsScreenRoute
 import com.alexmprog.thecocktails.festure.cocktails.list.navigateToCocktails
+import com.alexmprog.thecocktails.home.HomeScreenRoute
+import com.alexmprog.thecocktails.home.HomeScreens
+import com.alexmprog.thecocktails.home.homeScreenRoute
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -33,13 +39,24 @@ fun CocktailsApp(appState: CocktailsAppState) {
             popExitTransition = { fadeOut() }
         ) {
             homeScreenRoute(
-                onCategoryClick = {
-                    navController.navigateToCocktails(it.name, CocktailsSearchSource.Category)
-                }, onIngredientClick = {
-                    navController.navigateToCocktails(it.name, CocktailsSearchSource.Ingredient)
-                }, onGlassClick = {
-                    navController.navigateToCocktails(it.name, CocktailsSearchSource.Glass)
-                }, onSettingsClick = {
+                homeScreens = HomeScreens(
+                    categoriesScreen = HomeScreens.Screen(CategoriesListScreenRoute,{
+                        categoriesScreenRoute {
+                            navController.navigateToCocktails(it.name, CocktailsSearchSource.Category)
+                        }
+                    }),
+                    ingredientsScreen = HomeScreens.Screen(IngredientsListScreenRoute,{
+                        ingredientsScreenRoute {
+                            navController.navigateToCocktails(it.name, CocktailsSearchSource.Ingredient)
+                        }
+                    }),
+                    glassesScreen = HomeScreens.Screen(CategoriesListScreenRoute,{
+                        glassesScreenRoute {
+                            navController.navigateToCocktails(it.name, CocktailsSearchSource.Glass)
+                        }
+                    })
+                ),
+                onSettingsClick = {
                     navController.navigateToSettings()
                 }
             )
